@@ -1,0 +1,6 @@
+@BetBuddy.Backend.Api_HostAddress = http://localhost:5198
+
+GET {{BetBuddy.Backend.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
