@@ -25,3 +25,20 @@
 
 }
 
+.cl-formButtonPrimary {
+    font-size: 14px;
+    text-transform: none;
+    background-color: var(--color-primary);
+    & > span {
+        color:var(--color-dark);
+    }
+}
+
+.cl-formButtonPrimary:hover,
+.cl-formButtonPrimary:focus,
+.cl-formButtonPrimary:active {
+    background-color: var(--color-primary);
+    filter: brightness(1.1);
+}
+
+
