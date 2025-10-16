@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.VectorData;
+﻿using BetBuddy.Backend.Api.Data;
+using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel;
 
 namespace BetBuddy.Backend.Api.Ai;
@@ -20,7 +21,7 @@ public class KernelBuilder
             https: false
         );
 
-       // builder.Plugins.AddFromType<VectorStore>("Inventory");
+        builder.Plugins.AddFromType<FixturesVectorStore>("Fixtures");
         
         var kernel = builder.Build();
 

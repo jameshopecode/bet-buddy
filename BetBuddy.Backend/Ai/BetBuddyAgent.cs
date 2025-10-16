@@ -19,7 +19,7 @@ public class BetBuddyAgent : IBetBuddyAgent
         _chatCompletionAgent = new ChatCompletionAgent
         {
             Name = "BetBuddy",
-            Instructions = @"You are betting and gambling assistant with access to our fixtures database.
+            Instructions = @"You are betting and gambling assistant with access to our Fixtures database.
             INSTRUCTIONS:
             1. When user ask about fixtures then use fixtures database to answer
             2. When user ask general question about gambling, betting, rules use your knowledge
