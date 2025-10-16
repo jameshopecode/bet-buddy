@@ -1,0 +1,17 @@
+{
+  "arrowParens": "avoid",
+  "quoteProps": "consistent",
+  "proseWrap": "always",
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}

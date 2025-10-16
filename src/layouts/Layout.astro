@@ -1,22 +1,56 @@
+---
+import '../styles/global.css';
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+} from '@clerk/astro/components';
+import BetBuddyLogo from '../assets/bet-buddy-logo.svg';
+import { capitalize } from '../utils/text.utils';
+
+const user = await Astro.locals.currentUser();
+const userName = user?.firstName ? capitalize(user.firstName) : '';
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Bet Buddy</title>
+  </head>
+  <body class="bg-dark">
+    <div class="grid h-screen w-screen grid-rows-[60px_1fr]">
+      <header
+        class="bg-secondary flex items-center justify-between rounded-md p-4"
+      >
+        <nav class="flex items-center gap-2">
+          <div class="mt-2">
+            <BetBuddyLogo />
+          </div>
+          <a class="p-4" href="/">Ask Buddy</a>
+          <a class="p-4" href="/about">About</a>
+          <a class="p-4" href="/faq">FAQ</a>
+        </nav>
+        <aside class="flex items-center gap-4">
+          <SignedOut>
+            <SignInButton asChild>
+              <button
+                class="hover:text-primary transition:colors p-4 text-white"
+                >Log in</button
+              >
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            {userName && <p>Bet bright, {userName}</p>}
+            <UserButton />
+          </SignedIn>
+        </aside>
+      </header>
+      <slot />
+    </div>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

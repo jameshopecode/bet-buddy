@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@layer base {
+    div, span, h1, h2, h3, h4, h5, p {
+        color: #fff;
+    }
+}
+
+@theme {
+    --color-primary: #16BDF9;
+    --color-secondary: #1B222C;
+    --color-dark: #0A0E17;
+    --color-white: #FFF;
+    --color-gray-light: #BECDE3;
+    --color-gray: #26303A;
+
+    --color-error: #DE3F3F;
+    --color-error-secondary: #772525;
+    --color-success: #7ED887;
+    --color-success-secondary: #192B1B;
+    --color-warning: #EFA420;
+    --color-warning-secondary: #753712;
+    --color-info: #094C64;
+    --color-info-secondary: #A2E5FD;
+
+}
+
