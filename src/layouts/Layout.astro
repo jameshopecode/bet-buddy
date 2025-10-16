@@ -6,8 +6,9 @@ import {
   UserButton,
   SignInButton,
 } from '@clerk/astro/components';
-import BetBuddyLogo from '../assets/bet-buddy-logo.svg';
+import BetBuddyLogo from '../assets/bet-buddy-logo.png';
 import { capitalize } from '../utils/text.utils';
+import { Image } from 'astro:assets';
 
 const user = await Astro.locals.currentUser();
 const userName = user?.firstName ? capitalize(user.firstName) : '';
@@ -29,7 +30,13 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
       >
         <nav class="flex items-center gap-2">
           <div class="mt-2">
-            <BetBuddyLogo />
+            <Image
+              src={BetBuddyLogo}
+              alt="Bet Buddy logo"
+              width={189}
+              height={26}
+              class="-translate-x-4"
+            />
           </div>
           <a class="p-4" href="/">Ask Buddy</a>
           <a class="p-4" href="/about">About</a>

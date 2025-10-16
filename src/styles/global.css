@@ -3,6 +3,7 @@
 @layer base {
     div, span, h1, h2, h3, h4, h5, p {
         color: #fff;
+        font-family: Roboto, sans-serif;
     }
 }
 
@@ -23,6 +24,14 @@
     --color-info: #094C64;
     --color-info-secondary: #A2E5FD;
 
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto-Bold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 .cl-formButtonPrimary {
