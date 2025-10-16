@@ -37,7 +37,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
         </nav>
         <aside class="flex items-center gap-4">
           <SignedOut>
-            <SignInButton asChild>
+            <SignInButton asChild={true}>
               <button
                 class="hover:text-primary transition:colors p-4 text-white"
                 >Log in</button
