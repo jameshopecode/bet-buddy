@@ -34,8 +34,8 @@
     }
 }
 
-.cl-formButtonPrimary:hover,
 .cl-formButtonPrimary:focus,
+.cl-formButtonPrimary:hover,
 .cl-formButtonPrimary:active {
     background-color: var(--color-primary);
     filter: brightness(1.1);
