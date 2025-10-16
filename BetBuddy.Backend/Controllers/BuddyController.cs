@@ -1,3 +1,4 @@
+using BetBuddy.Backend.Api.Ai;
 using BetBuddy.Backend.Api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,12 @@ namespace BetBuddy.Backend.Api.Controllers;
 public class BuddyController : ControllerBase
 {
     private readonly ILogger<BuddyController> _logger;
-
-    public BuddyController(ILogger<BuddyController> logger)
+    private readonly IBetBuddyAgent  _agent;
+    
+    public BuddyController(ILogger<BuddyController> logger, IBetBuddyAgent agent)
     {
         _logger = logger;
+        _agent = agent;
     }
 
     [HttpGet("check")]
@@ -28,7 +31,7 @@ public class BuddyController : ControllerBase
             return BadRequest(new { error = "Invalid payload. 'input' is required." });
         }
 
-        //var response = await _agent.Interact(model.Input);
-        return Ok(new { response = "response" });
+        var response = await _agent.Interact(model.Input);
+        return Ok(new { response = response });
     }
 }
