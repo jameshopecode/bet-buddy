@@ -24,43 +24,42 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
     <title>Bet Buddy</title>
   </head>
   <body class="bg-dark">
-    <div class="grid h-screen w-screen grid-rows-[60px_1fr]">
+    <div class="grid h-screen w-full grid-rows-[60px_1fr]">
       <div class="bg-secondary flex items-center justify-center">
-
-      <header
-        class="flex items-center justify-between rounded-md p-4 w-full max-w-[1400px] mx-auto"
-      >
-        <nav class="flex items-center gap-2">
-          <div class="mt-2">
-            <Image
-              src={BetBuddyLogo}
-              alt="Bet Buddy logo"
-              width={189}
-              height={26}
-              class="-translate-x-4"
-            />
-          </div>
-          <a class="p-4" href="/">Home</a>
-          <a class="p-4" href="/esports">Esports</a>
-          <a class="p-4" href="/sports">Sports</a>
-          <a class="p-4" href="/about">About</a>
-          <a class="p-4" href="/faq">FAQ</a>
-        </nav>
-        <aside class="flex items-center gap-4">
-          <SignedOut>
-            <SignInButton asChild={true}>
-              <button class="cursor-pointer p-4 text-white">Sign in</button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            {userName && <p>Bet bright, {userName}</p>}
-            <UserButton />
-          </SignedIn>
-        </aside>
-      </header>
+        <header
+          class="mx-auto flex w-full max-w-[1400px] items-center justify-between rounded-md p-4"
+        >
+          <nav class="flex items-center gap-2">
+            <div class="mt-2">
+              <Image
+                src={BetBuddyLogo}
+                alt="Bet Buddy logo"
+                width={189}
+                height={26}
+                class="-translate-x-4"
+              />
+            </div>
+            <a class="p-4" href="/">Home</a>
+            <a class="p-4" href="/esports">Esports</a>
+            <a class="p-4" href="/sports">Sports</a>
+            <a class="p-4" href="/about">About</a>
+            <a class="p-4" href="/faq">FAQ</a>
+          </nav>
+          <aside class="flex items-center gap-4">
+            <SignedOut>
+              <SignInButton asChild={true}>
+                <button class="cursor-pointer p-4 text-white">Sign in</button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              {userName && <p>Bet bright, {userName}</p>}
+              <UserButton />
+            </SignedIn>
+          </aside>
+        </header>
       </div>
-      <div class="max-w-[1400px] mx-auto w-full">
-      <slot />
+      <div class="mx-auto w-full max-w-[1400px]">
+        <slot />
       </div>
     </div>
   </body>
