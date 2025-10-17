@@ -9,7 +9,7 @@ export const FAQ_ENTRIES = [
     question:
       'How does Bet Buddy help users find relevant betting opportunities?',
     answer:
-      "Bet Buddy utilizes AI to understand user input, whether through voice or text. It then intelligently searches across all available betting markets to identify the most relevant opportunities based on the user's preferences. It can also suggest alternative markets the user might not have considered.",
+      "Bet Buddy utilizes AI to understand user input, whether through voice or text. It then intelligently browses across all available betting markets to identify the most relevant opportunities based on the user's preferences. It can also suggest alternative markets the user might not have considered.",
   },
   {
     question: 'Can Bet Buddy help me discover new betting markets?',

@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BetBuddyLogo from '../assets/bet-buddy-logo.png';
+import { Image } from 'astro:assets';
+---
+
+<Layout>
+  <main class="relative grid grid-cols-2 items-center p-4 text-9xl">
+    <section class="">
+      <p>BETTING</p>
+      <p>SHOULDN'T</p>
+      <p>BE</p>
+      <p>ARDOUS</p>
+    </section>
+    <aside
+      class="grid grid-cols-2 items-center gap-4 justify-self-center text-2xl"
+    >
+      <span class="text-gray-light text-end line-through"
+        >no domain knowledge</span
+      >
+      <span class="text-3xl">clear path</span>
+      <span class="text-gray-light text-end line-through">endless options</span>
+      <span class="text-3xl">easy choice</span>
+      <span class="text-gray-light text-end line-through">abandoned bets</span>
+      <span class="text-3xl">full control</span>
+    </aside>
+  </main>
+  <div class="pb-20">
+    <Image
+      src={BetBuddyLogo}
+      alt="Bet Buddy logo"
+      width={567}
+      height={78}
+      class="mx-auto -translate-x-4 pt-20 pb-60"
+    />
+    <div class="flex flex-col gap-10 text-2xl">
+      <div class="text-gray-light">
+        Discover a smarter way to bet with <span class="font-bold"
+          >Bet Buddy</span
+        >, your personal AI assistant that opens up a world of possibilities.
+      </div>
+      <div class="text-gray-light">
+        Imagine finding the perfect betting opportunities, even those you never
+        knew existed, all tailored to your unique interests. Bet Buddy provides
+        <span class="font-bold">clear explanations</span> of betting rules and terms
+        granting you <span class="font-bold">more confidence</span> as well as guides
+        you through the process of betting, helping you uncover <span
+          class="font-bold">exciting new avenues</span
+        >
+        for engagement.
+      </div>
+      <div class="text-gray-light">
+        Enjoy a more intuitive, informed, and ultimately, more rewarding betting
+        experience. With <span class="font-bold">Bet Buddy</span> every bet becomes
+        an opportunity for discovery and greater understanding.
+      </div>
+    </div>
+  </div>
+</Layout>
