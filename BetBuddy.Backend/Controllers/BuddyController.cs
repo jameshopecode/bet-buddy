@@ -46,7 +46,7 @@ public class BuddyController : ControllerBase
             return BadRequest(new { error = "Invalid payload. 'input' is required." });
         }
 
-        var response = await _agent.Interact(model.Question);
+        var response = await _agent.Interact(model.Question, model.UserId);
         return Ok(response);
     }
     

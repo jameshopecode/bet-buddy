@@ -7,14 +7,16 @@ namespace BetBuddy.Backend.Api.Ai;
 
 public interface IBetBuddyAgent
 {
-    Task<string> Interact(string prompt);
+    Task<string> Interact(string prompt, string modelUserId);
 }
 public class BetBuddyAgent : IBetBuddyAgent
 {
     private readonly Kernel kernel;
     private readonly ChatCompletionAgent _chatCompletionAgent;
+    private readonly Dictionary<string, ChatHistory> _chatHistoryDict;
     public BetBuddyAgent(Kernel kernel)
     {
+        _chatHistoryDict = new Dictionary<string, ChatHistory>();
         this.kernel = kernel;
         _chatCompletionAgent = new ChatCompletionAgent
         {
@@ -74,9 +76,15 @@ public class BetBuddyAgent : IBetBuddyAgent
         };
     }
 
-    public async Task<string> Interact(string prompt)
+    public async Task<string> Interact(string prompt, string userId)
     {
-        var chatHistory = new ChatHistory();
+        ChatHistory? chatHistory;
+        if (!_chatHistoryDict.TryGetValue(userId, out chatHistory))
+        {
+            chatHistory = new ChatHistory();
+            _chatHistoryDict.Add(userId, chatHistory);
+        }
+
         chatHistory.AddUserMessage(prompt);
 
         var allResponses = new List<ChatMessageContent>();
