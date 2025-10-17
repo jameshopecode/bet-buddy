@@ -3,11 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import { SignIn } from '@clerk/astro/components';
 import { dark } from '@clerk/themes';
 ---
-
 <Layout>
   <div class="relative flex flex-col items-center gap-10">
     <p class="p-8 text-center">Sign in to unlock Bet Buddy's full potential.</p>
     <SignIn
+      forceRedirectUrl={"/betting"}
       appearance={{
         baseTheme: dark,
       }}
