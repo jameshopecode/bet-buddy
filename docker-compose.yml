@@ -29,6 +29,19 @@ services:
   #   restart: unless-stopped
 
 
+  buddy-api:
+    build:
+      context: .
+      dockerfile: BetBuddy.Backend/Dockerfile
+    ports:
+      - "5200:5200"
+    networks:
+      - buddy-network
+    depends_on:
+      - buddy-postgres
+      - ollama-server
+      - qdrant
+
   buddy-postgres:
     image: pgvector/pgvector:pg16
     container_name: buddy-postgres
