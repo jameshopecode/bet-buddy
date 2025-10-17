@@ -29,6 +29,19 @@ services:
   #   restart: unless-stopped
 
 
+  buddy-api:
+    build:
+      context: .
+      dockerfile: BetBuddy.Backend/Dockerfile
+    ports:
+      - "5200:5200"
+    networks:
+      - buddy-network
+    depends_on:
+      - buddy-postgres
+      - ollama-server
+      - qdrant
+
   buddy-postgres:
     image: pgvector/pgvector:pg16
     container_name: buddy-postgres
@@ -68,6 +81,17 @@ services:
       - OLLAMA_HOST=0.0.0.0
     networks:
       - buddy-network
+  
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    networks:
+      - buddy-network
 
 networks:
   buddy-network:
@@ -77,4 +101,6 @@ volumes:
   ollama_data:
     driver: local
   postgres_data:
+    driver: local
+  qdrant_storage:
     driver: local

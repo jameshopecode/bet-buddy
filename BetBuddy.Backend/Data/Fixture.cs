@@ -11,16 +11,15 @@ public class Fixture
     public int MatchId { get; set; }
     
     [VectorStoreData(IsFullTextIndexed = true)]
-    public string Date { get; set; }
+    public string Date { get; set; } = string.Empty;
     
     [VectorStoreData(IsFullTextIndexed = true)]
-    public string Home { get; set; }
+    public string Home { get; set; } = string.Empty;
     
     [VectorStoreData(IsFullTextIndexed = true)]
-    public string Away { get; set; }
-   
-    [VectorStoreData]
-    public int[]? Markets { get; set; }
+    public string Away { get; set; } = string.Empty;
+
+    [VectorStoreData] public long[]? Markets { get; set; } = null;
     
     [VectorStoreData(IsFullTextIndexed = true)]
     public string Description { get; set; } = string.Empty;

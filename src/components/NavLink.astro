@@ -1,0 +1,15 @@
+---
+import { cn } from 'src/utils/cn.ts';
+interface Props {
+  text?: string;
+  to: string;
+}
+
+const { text, to } = Astro.props;
+---
+
+<a
+  href={to}
+  class={cn("group grid grid-flow-col items-center h-full gap-2 p-4 transition-colors text-gray-300 hover:text-gray-100 bg-gray-100/0 hover:bg-gray-100/10")}
+  ><slot /><span class="text-gray-200 group-hover:text-white">{text}</span></a
+>
