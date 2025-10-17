@@ -57,7 +57,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
               </SignInButton>
             </SignedOut>
             <SignedIn>
-              {userName && <p>Bet bright, {userName}</p>}
+              <aside>Bet bright{userName ? <>, {userName}</> : '!'}</aside>
               <UserButton />
             </SignedIn>
           </aside>
@@ -65,7 +65,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
       </div>
       <div class="mx-auto w-full max-w-[1400px]">
         <slot />
-        <BetBuddy client:only />
+        <BetBuddy userId={user?.id || ''} client:only />
       </div>
     </div>
   </body>
