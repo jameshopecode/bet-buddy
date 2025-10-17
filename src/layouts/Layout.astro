@@ -9,12 +9,11 @@ import {
 import BetBuddyLogo from '../assets/bet-buddy-logo.png';
 import { capitalize } from '../utils/text.utils';
 import { Image } from 'astro:assets';
-import BetBuddy from "src/sections/bet-buddy/BetBuddy";
-import { IoHomeOutline } from "@react-icons/all-files/io5/IoHomeOutline";
-import { IoTicketOutline } from "@react-icons/all-files/io5/IoTicketOutline";
-import { FaQuestion } from "@react-icons/all-files/fa6/FaQuestion";
-import { TbWorldQuestion } from "@react-icons/all-files/tb/TbWorldQuestion";
-import NavLink from "src/components/NavLink.astro";
+import BetBuddy from 'src/sections/bet-buddy/BetBuddy';
+import { IoTicketOutline } from 'react-icons/io5';
+import { FaQuestion } from 'react-icons/fa';
+import { TbWorldQuestion } from 'react-icons/tb';
+import NavLink from 'src/components/NavLink.astro';
 
 const user = await Astro.locals.currentUser();
 const userName = user?.firstName ? capitalize(user.firstName) : '';
