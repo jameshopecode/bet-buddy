@@ -2,6 +2,7 @@
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Connectors.Qdrant;
 
 namespace BetBuddy.Backend.Api.Data;
 
@@ -10,9 +11,9 @@ public class FixturesVectorStore
     private readonly VectorStoreCollection<Guid, Fixture> _carCollection;
     private readonly IEmbeddingGenerator<string, Embedding<float>> _embeddingService;
 
-    public FixturesVectorStore(VectorStoreCollection<Guid, Fixture> carCollection, IEmbeddingGenerator<string, Embedding<float>> embeddingService)
+    public FixturesVectorStore(QdrantVectorStore vectorStore, IEmbeddingGenerator<string, Embedding<float>> embeddingService)
     {
-        _carCollection = carCollection;
+        _carCollection = vectorStore.GetCollection<Guid, Fixture>("fixtures");
         _embeddingService = embeddingService;
     }
     
