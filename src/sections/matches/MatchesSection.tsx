@@ -13,7 +13,7 @@ const MatchesSection: FC<IMatchesSectionProps> = ({ pathname }) => {
   console.log("MatchesSection", matches);
 
   return <main className="grid">
-      <h1>{page} betting</h1>
+      <h1>{page}</h1>
       <pre>{JSON.stringify(matches)}</pre>
   </main>
 };
