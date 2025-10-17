@@ -24,7 +24,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
     <title>Bet Buddy</title>
   </head>
   <body class="bg-dark">
-    <div class="grid h-screen w-screen grid-rows-[60px_1fr]">
+    <div class="grid h-screen w-screen">
       <header
         class="bg-secondary flex items-center justify-between rounded-md p-4"
       >
@@ -38,7 +38,9 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
               class="-translate-x-4"
             />
           </div>
-          <a class="p-4" href="/">Ask Buddy</a>
+          <a class="p-4" href="/">Home</a>
+          <a class="p-4" href="/esports">Esports</a>
+          <a class="p-4" href="/sports">Sports</a>
           <a class="p-4" href="/about">About</a>
           <a class="p-4" href="/faq">FAQ</a>
         </nav>

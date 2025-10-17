@@ -3,6 +3,7 @@ import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
 const { isAuthenticated, userId } = Astro.locals.auth();
+
 if (!isAuthenticated) {
   return Astro.redirect('/signin');
 }
