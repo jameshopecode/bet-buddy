@@ -1,6 +1,10 @@
 using BetBuddy.Backend.Api.Ai;
+using BetBuddy.Backend.Api.Data;
 using BetBuddy.Backend.Api.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.AI;
+using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Connectors.Qdrant;
 
 namespace BetBuddy.Backend.Api.Controllers;
 
@@ -10,17 +14,28 @@ public class BuddyController : ControllerBase
 {
     private readonly ILogger<BuddyController> _logger;
     private readonly IBetBuddyAgent  _agent;
-    
-    public BuddyController(ILogger<BuddyController> logger, IBetBuddyAgent agent)
+    private readonly FixtureRepository  _fixtureRepository;
+    private readonly Kernel _kernel;
+    private readonly QdrantVectorStore vectorStore;
+    private readonly IEmbeddingGenerator<string, Embedding<float>> embeddingService;
+    public BuddyController(ILogger<BuddyController> logger, IBetBuddyAgent agent, FixtureRepository fixtureRepository, Kernel kernel)
     {
         _logger = logger;
         _agent = agent;
+        _fixtureRepository = fixtureRepository;
+        _kernel = kernel;
+        
+        vectorStore = kernel.GetRequiredService<QdrantVectorStore>();
+        embeddingService = kernel.GetRequiredService<IEmbeddingGenerator<string, Embedding<float>>>();
     }
 
     [HttpGet("check")]
     public async Task<IActionResult> Get()
     {
-        return await Task.FromResult(Ok("Ok app"));
+        var allFixtures = await _fixtureRepository.GetAllFixtures();
+        await InitializeVectorStoreAsync(allFixtures);
+        
+        return await Task.FromResult(Ok("Seed vectors ok"));
     }
     
     [HttpPost("chat")]
@@ -33,5 +48,27 @@ public class BuddyController : ControllerBase
 
         var response = await _agent.Interact(model.Question);
         return Ok(response);
+    }
+    
+    public async Task InitializeVectorStoreAsync(IEnumerable<Fixture> fixtures)
+    {
+        // Get the car collection
+        var qdrantCollection = vectorStore.GetCollection<Guid, Fixture>("fixtures");;
+            
+        // Ensure the collection exists
+        await qdrantCollection.EnsureCollectionExistsAsync();
+        
+
+        // Generate embeddings and upsert cars
+        foreach (var fixture in fixtures)
+        {
+            var embedding = await embeddingService.GenerateAsync(fixture.Description);
+            fixture.DescriptionEmbedding = embedding.Vector;
+            fixture.Id = Guid.NewGuid();
+        }
+
+        await qdrantCollection.UpsertAsync(fixtures);
+            
+        Console.WriteLine($"Initialized car inventory with {fixtures?.Count()} vehicles.");
     }
 }

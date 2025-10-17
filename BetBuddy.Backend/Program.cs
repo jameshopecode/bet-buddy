@@ -1,4 +1,5 @@
 using BetBuddy.Backend.Api.Ai;
+using BetBuddy.Backend.Api.Data;
 using Microsoft.SemanticKernel;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddSingleton<Kernel>(new KernelBuilder().BuildOllamaKernel());
 builder.Services.AddSingleton<IBetBuddyAgent, BetBuddyAgent>();
+builder.Services.AddScoped<FixtureRepository>();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
