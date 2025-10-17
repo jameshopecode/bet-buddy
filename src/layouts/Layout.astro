@@ -9,6 +9,12 @@ import {
 import BetBuddyLogo from '../assets/bet-buddy-logo.png';
 import { capitalize } from '../utils/text.utils';
 import { Image } from 'astro:assets';
+import BetBuddy from "src/sections/bet-buddy/BetBuddy";
+import { IoHomeOutline } from "@react-icons/all-files/io5/IoHomeOutline";
+import { IoTicketOutline } from "@react-icons/all-files/io5/IoTicketOutline";
+import { FaQuestion } from "@react-icons/all-files/fa6/FaQuestion";
+import { TbWorldQuestion } from "@react-icons/all-files/tb/TbWorldQuestion";
+import NavLink from "src/components/NavLink.astro";
 
 const user = await Astro.locals.currentUser();
 const userName = user?.firstName ? capitalize(user.firstName) : '';
@@ -32,7 +38,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
           class="mx-auto flex w-full max-w-[1400px] items-center justify-between rounded-md p-4"
         >
           <nav class="flex items-center gap-2">
-            <div class="mt-2">
+            <NavLink to="/">
               <Image
                 src={BetBuddyLogo}
                 alt="Bet Buddy logo"
@@ -40,12 +46,10 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
                 height={26}
                 class="-translate-x-4"
               />
-            </div>
-            <a class="p-4" href="/">Home</a>
-            <a class="p-4" href="/esports">Esports</a>
-            <a class="p-4" href="/sports">Sports</a>
-            <a class="p-4" href="/about">About</a>
-            <a class="p-4" href="/faq">FAQ</a>
+            </NavLink>
+            <NavLink to="/betting" text="Betting"><IoTicketOutline /></NavLink>
+            <NavLink to="/about" text="About"><TbWorldQuestion /></NavLink>
+            <NavLink to="/faq" text="FAQ"><FaQuestion /></NavLink>
           </nav>
           <aside class="flex items-center gap-4">
             <SignedOut>
@@ -62,6 +66,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
       </div>
       <div class="mx-auto w-full max-w-[1400px]">
         <slot />
+        <BetBuddy client:only />
       </div>
     </div>
   </body>
