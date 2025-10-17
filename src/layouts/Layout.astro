@@ -24,9 +24,11 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
     <title>Bet Buddy</title>
   </head>
   <body class="bg-dark">
-    <div class="grid h-screen w-screen">
+    <div class="grid h-screen w-screen grid-rows-[60px_1fr]">
+      <div class="bg-secondary flex items-center justify-center">
+
       <header
-        class="bg-secondary flex items-center justify-between rounded-md p-4"
+        class="flex items-center justify-between rounded-md p-4 w-full max-w-[1400px] mx-auto"
       >
         <nav class="flex items-center gap-2">
           <div class="mt-2">
@@ -56,7 +58,10 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
           </SignedIn>
         </aside>
       </header>
+      </div>
+      <div class="max-w-[1400px] mx-auto w-full">
       <slot />
+      </div>
     </div>
   </body>
 </html>

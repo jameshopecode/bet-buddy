@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FAQ_ENTRIES } from '../consts/faq.const';
+---
+
+<Layout>
+  <main class="relative mt-6 p-4">
+    <p class="pb-2 text-3xl font-bold text-white">FAQ</p>
+    <p class="text-gray-light pb-10">Frequently asked questions</p>
+    {
+      FAQ_ENTRIES.map(entry => (
+        <section class="flex flex-col gap-2 pb-10">
+          <p class="font-bold">{entry.question}</p>
+          <p>{entry.answer}</p>
+        </section>
+      ))
+    }
+  </main>
+</Layout>
