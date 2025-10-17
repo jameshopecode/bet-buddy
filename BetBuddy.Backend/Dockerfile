@@ -1,11 +1,11 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 5200
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
+WORKDIR /app
 COPY ["BetBuddy.Backend/BetBuddy.Backend.sln", "./"]
 COPY ["BetBuddy.Backend/BetBuddy.Backend.Api.csproj", "BetBuddy.Backend/"]
 RUN dotnet restore "BetBuddy.Backend.sln"
