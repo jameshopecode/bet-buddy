@@ -3,5 +3,5 @@ import Layout from 'src/layouts/Layout.astro';
 import MatchesSection from '../sections/matches/MatchesSection.js';
 ---
 <Layout>
-  <MatchesSection pathname={Astro.url.pathname} client:only />
+  <MatchesSection pathname={Astro.url.pathname} client:load />
 </Layout>
