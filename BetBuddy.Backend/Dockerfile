@@ -6,10 +6,8 @@ EXPOSE 5200
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /app
-COPY ["BetBuddy.Backend/BetBuddy.Backend.sln", "./"]
-COPY ["BetBuddy.Backend/BetBuddy.Backend.Api.csproj", "BetBuddy.Backend/"]
-RUN dotnet restore "BetBuddy.Backend.sln"
-COPY ["BetBuddy.Backend/.", "BetBuddy.Backend/"]
+COPY . .
+RUN dotnet restore "BetBuddy.Backend/BetBuddy.Backend.sln"
 RUN dotnet build "BetBuddy.Backend/BetBuddy.Backend.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
