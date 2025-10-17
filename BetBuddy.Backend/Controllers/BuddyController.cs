@@ -26,12 +26,12 @@ public class BuddyController : ControllerBase
     [HttpPost("chat")]
     public async Task<IActionResult> Chat([FromBody] InputModel model)
     {
-        if (model is null || string.IsNullOrWhiteSpace(model.Input))
+        if (model is null || string.IsNullOrWhiteSpace(model.Question))
         {
             return BadRequest(new { error = "Invalid payload. 'input' is required." });
         }
 
-        var response = await _agent.Interact(model.Input);
-        return Ok(new { response = response });
+        var response = await _agent.Interact(model.Question);
+        return Ok(response);
     }
 }
