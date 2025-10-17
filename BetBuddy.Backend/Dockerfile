@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 5200
@@ -6,15 +6,15 @@ EXPOSE 5200
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["BetBuddy.Backend.Api.csproj", "./"]
-RUN dotnet restore "BetBuddy.Backend.Api.csproj"
-COPY . .
-WORKDIR "/src/"
-RUN dotnet build "./BetBuddy.Backend.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+COPY ["BetBuddy.Backend/BetBuddy.Backend.sln", "./"]
+COPY ["BetBuddy.Backend/BetBuddy.Backend.Api.csproj", "BetBuddy.Backend/"]
+RUN dotnet restore "BetBuddy.Backend.sln"
+COPY ["BetBuddy.Backend/.", "BetBuddy.Backend/"]
+RUN dotnet build "BetBuddy.Backend/BetBuddy.Backend.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./BetBuddy.Backend.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "BetBuddy.Backend/BetBuddy.Backend.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
