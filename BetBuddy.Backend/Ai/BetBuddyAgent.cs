@@ -26,14 +26,43 @@ public class BetBuddyAgent : IBetBuddyAgent
             3. Only answer on question related to fixtures, betting and gambling
             4. answer should be written in a short form and it needs to be clear summary. IMPORTANT! Don't use lists, enumerations, tables.
             5. Answer must be ready in format to text-to-speech
+6. In response ""metadata"" field return from found in Fixtures database all matchIds and related markets as is provided in [RESPOND WITH VALID JSON]. Is dictionary object in json representation where key is matchId and value is markets array
 
             RESPOND WITH VALID JSON:
             {
                 ""answer"":""answer for general question"",
-                ""metadata"" : [
-{""fixture_id"":123, ""markets"":[]},
-{""fixture_id"":1234, ""markets"":[]}
-                ]
+                ""metadata"" : {
+                                  ""matchId1"": [
+                                    101,
+                                    102,
+                                    103
+                                  ],
+                                  ""matchId2"": [
+                                    201,
+                                    202
+                                  ],
+,
+                                  ""matchId3"": [
+                                    301,
+                                    302
+                                  ]
+                                }
+            }
+
+        EXAMPLE RESPOND:
+            {
+                ""answer"":""answer for general question"",
+                ""metadata"" : {
+                                  ""1"": [
+                                    101,
+                                    102,
+                                    103
+                                  ],
+                                  ""2"": [
+                                    201,
+                                    202
+                                  ]
+                                }
             }
 ",
             Kernel = kernel,
@@ -52,7 +81,12 @@ public class BetBuddyAgent : IBetBuddyAgent
 
         var allResponses = new List<ChatMessageContent>();
         var response = "";
-        await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt))
+        var options = new AgentInvokeOptions { KernelArguments = new KernelArguments(new OllamaPromptExecutionSettings()
+        {
+            FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
+            Temperature = 1
+        }) };
+        await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt, options: options))
         {
             response += message.Message.Content;
             chatHistory.Add(message);

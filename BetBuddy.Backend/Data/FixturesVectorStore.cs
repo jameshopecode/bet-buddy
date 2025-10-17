@@ -18,9 +18,9 @@ public class FixturesVectorStore
     }
     
     [KernelFunction("SearchFixtures")]
-    [Description("Search for upcomming fixtures, matches with markets based on user requirements")]
+    [Description("Search for all upcomming fixtures, matches with markets based on user requirements")]
     public async Task<Fixture[]> SearchCarsAsync(
-        [Description("The search query describing what kind of fixture, match or market looking for")]
+        [Description("The search query describing what kind of fixtures, matchs or markets looking for")]
         string query)
     {
         // Generate embedding for the search query
@@ -31,9 +31,9 @@ public class FixturesVectorStore
         var searchOptions = new VectorSearchOptions<Fixture>
         {
             VectorProperty = m => m.DescriptionEmbedding,
-            Filter = m => m.IsAvailable == true
+            //Filter = m => m.IsAvailable == true
         };
-        // Add filter for available cars only
+
 
         var searchResults =  _carCollection.SearchAsync(queryEmbedding,5, searchOptions);
 
