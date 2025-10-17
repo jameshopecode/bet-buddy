@@ -1,6 +1,7 @@
 import startCase from "lodash-es/startCase";
 import type { FC } from 'react';
 import { useMatches } from 'src/hooks/useMatches.ts';
+import TextInput from 'src/components/speech-to-text-input/TextInput.tsx';
 
 interface IMatchesSectionProps {
   pathname: string
@@ -14,7 +15,7 @@ const MatchesSection: FC<IMatchesSectionProps> = ({ pathname }) => {
 
   return <main className="grid">
       <h1>{page}</h1>
-      <pre>{JSON.stringify(matches)}</pre>
+      <TextInput />
   </main>
 };
 
