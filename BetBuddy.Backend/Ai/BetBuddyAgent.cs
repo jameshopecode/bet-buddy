@@ -73,7 +73,9 @@ public class BetBuddyAgent : IBetBuddyAgent
             Arguments = new KernelArguments(new OllamaPromptExecutionSettings()
             {
                 FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
-                Temperature = 0.5f
+                Temperature = 0.4f,
+                NumPredict = 1024,
+                TopP = 0.6f
             })
         };
     }
@@ -91,7 +93,9 @@ public class BetBuddyAgent : IBetBuddyAgent
         var options = new AgentInvokeOptions { KernelArguments = new KernelArguments(new OllamaPromptExecutionSettings()
         {
             FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
-            Temperature = 0.5f
+            Temperature = 0.4f,
+            NumPredict = 1024,
+            TopP = 0.6f
         }) };
         
         await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt,chatHistory, options: options))
