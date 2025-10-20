@@ -23,9 +23,6 @@ importers:
       '@clerk/themes':
         specifier: ^2.4.27
         version: 2.4.27
-      '@nanostores/react':
-        specifier: github:nanostores/react
-        version: https://codeload.github.com/nanostores/react/tar.gz/a6ad745cc307881916944ee4d6ba04bdda978dc6(nanostores@1.0.1)(react@19.2.0)
       '@tailwindcss/vite':
         specifier: ^4.1.14
         version: 4.1.14(vite@6.4.0(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.1))
@@ -50,9 +47,6 @@ importers:
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
-      nanostores:
-        specifier: ^1.0.1
-        version: 1.0.1
       prettier-plugin-tailwindcss:
         specifier: ^0.6.14
         version: 0.6.14(prettier-plugin-astro@0.14.1)(prettier@3.6.2)
@@ -548,14 +542,6 @@ packages:
     resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
     engines: {node: '>=18'}
     hasBin: true
-
-  '@nanostores/react@https://codeload.github.com/nanostores/react/tar.gz/a6ad745cc307881916944ee4d6ba04bdda978dc6':
-    resolution: {tarball: https://codeload.github.com/nanostores/react/tar.gz/a6ad745cc307881916944ee4d6ba04bdda978dc6}
-    version: 1.0.0
-    engines: {node: ^20.0.0 || >=22.0.0}
-    peerDependencies:
-      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^1.0.0
-      react: '>=18.0.0'
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -2818,11 +2804,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  '@nanostores/react@https://codeload.github.com/nanostores/react/tar.gz/a6ad745cc307881916944ee4d6ba04bdda978dc6(nanostores@1.0.1)(react@19.2.0)':
-    dependencies:
-      nanostores: 1.0.1
-      react: 19.2.0
 
   '@oslojs/encoding@1.1.0': {}
 

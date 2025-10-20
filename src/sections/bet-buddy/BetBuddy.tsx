@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { LightningIcon } from 'src/components/icons/LightningIcon.tsx';
 import BuddySidebar from 'src/components/BuddySidebar.tsx';
 import { cn } from 'src/utils/cn.ts';
+import { ChatContextProvider } from 'src/context/ChatContextProvider.tsx';
 
 type Props = {
   userId: string;
@@ -27,9 +28,9 @@ const Trigger = ({
 
 const BetBuddy: FC<Props> = ({ userId }) => {
   return (
-    <>
+    <ChatContextProvider>
       <BuddySidebar userId={userId} />
-    </>
+    </ChatContextProvider>
   );
 };
 
