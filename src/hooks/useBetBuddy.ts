@@ -20,7 +20,16 @@ export const useBetBuddy = () => {
             question,
             userId,
           }),
-        }).then(response => response.json()),
+        })
+          .then(response => {
+            try {
+              return response.json();
+            } catch {
+              return {
+                answer: response.text()
+              }
+            }
+          })
     },
     queryClient
   );
