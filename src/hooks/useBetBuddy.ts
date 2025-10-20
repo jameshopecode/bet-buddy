@@ -22,6 +22,10 @@ export const useBetBuddy = () => {
           }),
         })
           .then(async response => {
+            if (!response.ok) {
+              throw new Error(`Request error with status ${response.status}: ${response.statusText}`)
+            }
+
             const text = await response.text();
             try {
               return JSON.parse(text);

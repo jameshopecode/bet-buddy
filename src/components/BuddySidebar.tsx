@@ -10,7 +10,7 @@ type Props = {
 };
 
 const BuddySidebar: FC<Props> = ({ userId }) => {
-  const { mutateAsync: askBuddy, data } = useBetBuddy();
+  const { mutateAsync: askBuddy, data, isPending } = useBetBuddy();
   const [value, setValue] = useState('');
 
   const { messages, askQuestion, handleChatResponse } = useChatHistory(userId);
@@ -30,7 +30,7 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
             <Message key={index} message={message} />
           ))}
         </div>
-        <TextInput value={value} onChange={setValue} onSubmit={handleSubmit} />
+        <TextInput value={value} onChange={setValue} onSubmit={handleSubmit} isPending={isPending} />
       </section>
     </div>
   );
