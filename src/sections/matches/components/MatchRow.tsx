@@ -12,12 +12,14 @@ const MatchRow: FC<IMatchRowProps> = ({ match }) => {
   return (
     <div
       className={cn(
-        "grid grid-cols-[70px_1fr_70px] [grid-template-areas:'game_time_button''competition_teams_button']",
+        "grid grid-cols-[70px_1fr_70px] [grid-template-areas:'competition_time_button''game_teams_button']",
         "bg-gray w-full rounded-md p-2 overflow-hidden"
       )}
     >
-      <div className="[grid-area:game] ml-2 font-bold">{match.game}</div>
-      <div className="[grid-area:competition] ml-2 text-gray-400">{match.competition}</div>
+      <div className="[grid-area:competition] ml-2 text-sm self-center text-gray-400 w-[calc(50vw-300px)] whitespace-nowrap overflow-hidden text-ellipsis">
+        {match.competition}
+      </div>
+      <div className="[grid-area:game] ml-2 font-bold text-sm self-center">{match.game}</div>
       <div className="inline-flex gap-2 justify-center [grid-area:time] text-sm text-gray-400">
         {format(match.startTime, "yyyy-MM-dd HH:mm")}
       </div>
