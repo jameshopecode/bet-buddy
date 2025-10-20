@@ -1,0 +1,17 @@
+---
+import MarketsSection from 'src/sections/markets/MarketsSection.tsx';
+import Layout from 'src/layouts/Layout.astro';
+
+interface Params {
+  id: string
+}
+
+const { id: idString } = Astro.params as Params & Record<string, string | undefined>;
+const id = Number(idString);
+---
+
+<Layout>
+  <main class="flex flex-col gap-4">
+    <MarketsSection id={id} client:only />
+  </main>
+</Layout>

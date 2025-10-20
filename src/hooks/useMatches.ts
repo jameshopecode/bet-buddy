@@ -1,16 +1,36 @@
 import { useQuery } from '@tanstack/react-query';
 import { queryClient } from 'src/core/query/query-client.ts';
 import { getMatchUrl, type MatchesResponse } from 'src/model/match.model.ts';
-import { mapValues } from 'lodash-es';
+import { mapValues, pick, pickBy } from 'lodash-es';
 import { getMarketUrl } from 'src/model/market.model.ts';
+import { useCallback } from 'react';
 
-interface IUseMatchesInput {
-  pageSize: number
+interface IUseMatchesInput<R = MatchesResponse> {
+  select?(response: MatchesResponse): R
 }
 
-export function useMatches({ pageSize = 10 }: IUseMatchesInput) {
-  const { data } = useQuery<MatchesResponse>({
-    queryKey: ["matches", pageSize],
+export const getMatch = (id: number) => (response: MatchesResponse) => {
+  return response?.[id];
+};
+
+export const getMatchesWithMarkets = (ids: MatchesMarketsMetadata) => useCallback((response: MatchesResponse) => {
+  const filteredResponse: MatchesResponse = {};
+
+  for (const [matchIdStr, marketIds] of Object.entries(ids ?? {})) {
+    const matchId = Number(matchIdStr);
+
+    if (!response[matchId]) continue;
+
+    filteredResponse[matchId] = response[matchId];
+    filteredResponse[matchId].markets = pick(response[matchId].markets, marketIds);
+  }
+
+  return filteredResponse;
+}, [ids])
+
+export function useMatches<R = MatchesResponse>({ select }: IUseMatchesInput<R> = {}) {
+  const { data } = useQuery({
+    queryKey: ["matches"],
     queryFn: async () => {
       return {
         [1]: {
@@ -57,7 +77,8 @@ export function useMatches({ pageSize = 10 }: IUseMatchesInput) {
         return match;
       })
     },
+    select,
   }, queryClient);
 
-  return { matches: data };
+  return { data: data as R };
 }

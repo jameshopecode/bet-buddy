@@ -1,10 +1,9 @@
-import  { type FC, useState } from 'react';
+import  { type FC } from 'react';
 import { useMatches } from 'src/hooks/useMatches.ts';
 import MatchRow from 'src/sections/matches/components/MatchRow.tsx';
 
 const MatchesSection: FC = () => {
-  const { matches } = useMatches({ pageSize: 100 });
-  const [value, setValue] = useState("");
+  const { data: matches } = useMatches();
 
   return (
     <main className="flex flex-col gap-4">
