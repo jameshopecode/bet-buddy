@@ -21,6 +21,13 @@ export const useChatHistory = (userId: string) => {
     saveChatHistoryToLS({ [userId]: newChatHistory });
   };
 
+  const cleanHistory = () => {
+    setChatHistory({
+      [userId]: [],
+    })
+    saveChatHistoryToLS({ [userId]: [] });
+  }
+
   const handleChatResponse = (response: IChatResponse) => {
     const answer = sanitizeChatResponse(response);
 
@@ -43,6 +50,7 @@ export const useChatHistory = (userId: string) => {
   return {
     askQuestion,
     handleChatResponse,
+    cleanHistory,
     messages: (contextChatHistoryForUser ?? []) as ChatHistoryT[string],
   };
 };
