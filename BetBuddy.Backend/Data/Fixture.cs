@@ -21,10 +21,10 @@ public class Fixture
 
     [VectorStoreData] public long[]? Markets { get; set; } = null;
     
-    [VectorStoreData(IsFullTextIndexed = true)]
+    [VectorStoreData(IsFullTextIndexed = true, IsIndexed = true)]
     public string Description { get; set; } = string.Empty;
     
     
-    [VectorStoreVector(768)]
+    [VectorStoreVector(768, IndexKind = IndexKind.Hnsw)]
     public ReadOnlyMemory<float>? DescriptionEmbedding { get; set; }
 }
