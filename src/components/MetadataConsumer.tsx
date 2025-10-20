@@ -21,7 +21,7 @@ const MetadataConsumer: FC<Props> = ({ message }) => {
   return (
     <div className="bg-dark w-4/5 rounded-sm p-3 text-white">
       <a
-        className="bg-info flex w-fit items-center gap-2 rounded-md px-6 py-2"
+        className="flex w-fit items-center gap-2 rounded-md bg-gray-800 px-6 py-2"
         href={url}
         rel="noreferrer"
       >

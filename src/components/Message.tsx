@@ -9,7 +9,7 @@ type Props = {
 const Question = ({ question }: { question: string }) => {
   return (
     <div className="flex justify-end">
-      <p className="bg-primary w-4/5 rounded-sm p-2 text-white">{question}</p>
+      <p className="bg-info w-4/5 rounded-sm p-2 text-white">{question}</p>
     </div>
   );
 };
