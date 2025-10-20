@@ -58,7 +58,7 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
           {isPending && <Loader />}
           <div id="messages-bottom-anchor" ref={messagesEndRef} />
         </div>
-        <TextInput value={value} onChange={setValue} onSubmit={handleSubmit} />
+        <TextInput value={value} onChange={setValue} onSubmit={handleSubmit} isPending={isPending} />
       </section>
     </div>
   );
