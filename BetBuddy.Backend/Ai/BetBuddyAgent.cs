@@ -13,10 +13,10 @@ public class BetBuddyAgent : IBetBuddyAgent
 {
     private readonly Kernel kernel;
     private readonly ChatCompletionAgent _chatCompletionAgent;
-    private readonly Dictionary<string, ChatHistory> _chatHistoryDict;
+    private readonly Dictionary<string, ChatHistoryAgentThread> _chatHistoryDict;
     public BetBuddyAgent(Kernel kernel)
     {
-        _chatHistoryDict = new Dictionary<string, ChatHistory>();
+        _chatHistoryDict = new Dictionary<string, ChatHistoryAgentThread>();
         this.kernel = kernel;
         _chatCompletionAgent = new ChatCompletionAgent
         {
@@ -25,11 +25,12 @@ public class BetBuddyAgent : IBetBuddyAgent
             INSTRUCTIONS:
             1. When user ask about fixtures then use fixtures database to answer
             2. When user ask general question about gambling, betting, rules use your knowledge
-            3. Only answer on question related to fixtures, betting and gambling
-            4. answer should be written in a short form and it needs to be clear summary. IMPORTANT! Don't use lists, enumerations, tables.
-            5. Answer must be ready in format to text-to-speech
-6. In response ""metadata"" field return from found in Fixtures database all matchIds and related markets as is provided in [RESPOND WITH VALID JSON]. Is dictionary object in json representation where key is matchId and value is markets array
-
+            3. Analyze matches to identity game if is sport or e-sport. 
+            4. Only answer on question related to fixtures, betting and gambling
+            5. Answer should be written in a short form and it needs to be clear summary. If question is related to specific match/market - provided answer need to be limited to it and in metadata return data related only to it. IMPORTANT! Don't use lists, enumerations, tables. Don't include in answer any match id, market id, section id!!
+            6. Answer must be ready in format to text-to-speech
+            7. In response ""metadata"" field return from found in Fixtures database all matchIds and markets related to search result as is provided in [RESPOND WITH VALID JSON]. Is dictionary object in json representation where key is matchId and value is markets array
+            
             RESPOND WITH VALID JSON:
             {
                 ""answer"":""answer for general question"",
@@ -71,34 +72,33 @@ public class BetBuddyAgent : IBetBuddyAgent
             Arguments = new KernelArguments(new OllamaPromptExecutionSettings()
             {
                 FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
-                Temperature = 1
+                Temperature = 0.5f
             })
         };
     }
 
     public async Task<string> Interact(string prompt, string userId)
     {
-        ChatHistory? chatHistory;
+        ChatHistoryAgentThread? chatHistory;
         if (!_chatHistoryDict.TryGetValue(userId, out chatHistory))
         {
-            chatHistory = new ChatHistory();
+            chatHistory = new ChatHistoryAgentThread();
             _chatHistoryDict.Add(userId, chatHistory);
         }
 
-        chatHistory.AddUserMessage(prompt);
-
-        var allResponses = new List<ChatMessageContent>();
+        //chatHistory.ChatHistory.AddUserMessage(prompt);
+        
         var response = "";
         var options = new AgentInvokeOptions { KernelArguments = new KernelArguments(new OllamaPromptExecutionSettings()
         {
             FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
-            Temperature = 1
+            Temperature = 0.5f
         }) };
-        await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt, options: options))
+        
+        await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt,chatHistory, options: options))
         {
             response += message.Message.Content;
-            chatHistory.Add(message);
-            allResponses.Add(message.Message);
+            //chatHistory.ChatHistory.Add(message);
         }
 
         return response;

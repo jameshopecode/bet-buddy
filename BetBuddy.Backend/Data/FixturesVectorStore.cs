@@ -30,12 +30,11 @@ public class FixturesVectorStore
  
         var searchOptions = new VectorSearchOptions<Fixture>
         {
-            VectorProperty = m => m.DescriptionEmbedding,
-            //Filter = m => m.IsAvailable == true
+            VectorProperty = m => m.DescriptionEmbedding
         };
 
 
-        var searchResults =  _carCollection.SearchAsync(queryEmbedding,5, searchOptions);
+        var searchResults =  _carCollection.SearchAsync(queryEmbedding,20, searchOptions);
 
         var results = new List<Fixture>();
         await foreach (var result in searchResults)

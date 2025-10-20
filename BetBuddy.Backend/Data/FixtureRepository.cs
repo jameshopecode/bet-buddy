@@ -38,7 +38,7 @@ public class FixtureRepository
                     m.home,
                     m.away,
                     m.game,
-                    STRING_AGG(distinct mk.name || ' (' || mk.market_type || ')', ', ')
+                    STRING_AGG(distinct mk.name || ' (' || mk.market_type || ' ' || mk.id || ') ', ', ')
                 ) as Description
             FROM
                 matches m
