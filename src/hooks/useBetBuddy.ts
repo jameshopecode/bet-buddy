@@ -21,12 +21,13 @@ export const useBetBuddy = () => {
             userId,
           }),
         })
-          .then(response => {
+          .then(async response => {
+            const text = await response.text();
             try {
-              return response.json();
+              return JSON.parse(text);
             } catch {
               return {
-                answer: response.text()
+                answer: text,
               }
             }
           })
