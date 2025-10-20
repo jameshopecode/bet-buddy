@@ -28,8 +28,8 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
     try {
       setValue('');
       askQuestion(value);
-      const response = await askBuddy({ question: value, userId });
       scrollDown();
+      const response = await askBuddy({ question: value, userId });
       handleChatResponse(response as unknown as IChatResponse);
       tryRedirectingToMarketsPage(response);
     } catch (e) {
@@ -58,7 +58,12 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
           {isPending && <Loader />}
           <div id="messages-bottom-anchor" ref={messagesEndRef} />
         </div>
-        <TextInput value={value} onChange={setValue} onSubmit={handleSubmit} isPending={isPending} />
+        <TextInput
+          value={value}
+          onChange={setValue}
+          onSubmit={handleSubmit}
+          isPending={isPending}
+        />
       </section>
     </div>
   );
