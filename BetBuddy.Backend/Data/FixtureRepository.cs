@@ -50,7 +50,7 @@ public class FixtureRepository
         return await connection.QueryAsync<Fixture>(query);
     }
 
-    public async Task<IEnumerable<MatchDto>> GetAllMatchesWithMarketsAndSelections()
+    public async Task<IDictionary<long, MatchDto>> GetAllMatchesWithMarketsAndSelections()
     {
         await using var connection = new NpgsqlConnection(_connectionString);
         var sql = @"
@@ -77,20 +77,21 @@ public class FixtureRepository
                 if (!matchDictionary.TryGetValue(match.Id, out var currentMatch))
                 {
                     currentMatch = match;
-                    currentMatch.Markets = new List<MarketDto>();
+                    currentMatch.Markets = new Dictionary<long, MarketDto>();
                     matchDictionary.Add(currentMatch.Id, currentMatch);
                 }
 
                 if (market != null)
                 {
-                    var currentMarket = currentMatch.Markets.FirstOrDefault(m => m.Id == market.Id);
+                    var currentMarket = currentMatch.Markets.ContainsKey(market.Id) ?  currentMatch.Markets[market.Id] : null;   
+
                     if (currentMarket == null)
                     {
                         currentMarket = market;
                         currentMarket.Selections = new List<SelectionDto>();
-                        currentMatch.Markets.Add(currentMarket);
+                        currentMatch.Markets.Add(currentMarket.Id, currentMarket);
                     }
-
+                    
                     if (selection != null)
                     {
                         currentMarket.Selections.Add(selection);
@@ -102,6 +103,6 @@ public class FixtureRepository
             splitOn: "id,id,id"
         );
 
-        return matchDictionary.Values;
+        return matchDictionary;
     }
 }
