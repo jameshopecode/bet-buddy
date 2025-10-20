@@ -1,27 +1,56 @@
 import type { FC } from 'react';
 import { LightningIcon } from 'src/components/icons/LightningIcon.tsx';
-import { useBetBuddy } from 'src/hooks/useBetBuddy.ts';
+import { useEffect } from 'react';
+import BuddySidebar from 'src/components/BuddySidebar.tsx';
+import { useStore } from '@nanostores/react';
+import { $changeSidebarOpenState, $isOpen } from 'src/stores/chat.ts';
+import { cn } from 'src/utils/cn.ts';
 
 type Props = {
   userId: string;
 };
 
-const BetBuddy: FC<Props> = ({ userId }) => {
-  const { mutateAsync, data } = useBetBuddy();
+const Trigger = ({
+  handleClick,
+  isOpen,
+}: {
+  handleClick: () => void;
+  isOpen: boolean;
+}) => (
+  <div
+    className={cn(
+      'bg bg-secondary hover:border-primary fixed bottom-4 z-20 cursor-pointer rounded-full p-7 transition-shadow hover:shadow-[3px_3px_10px_-0.5px_#16bdf9]',
+      isOpen ? 'pointer-events-none right-75' : 'right-4'
+    )}
+    onClick={handleClick}
+  >
+    <LightningIcon />
+  </div>
+);
 
-  // TODO: USUNĄĆ CONSOLE.LOG
-  console.log('data: ', data);
+const BetBuddy: FC<Props> = ({ userId }) => {
+  const isSidebarOpen = useStore($isOpen);
+
+  const handleClick = () => {
+    $changeSidebarOpenState(!isSidebarOpen);
+    localStorage.setItem('isSidebarOpen', JSON.stringify(!isSidebarOpen));
+  };
+
+  useEffect(() => {
+    $changeSidebarOpenState(
+      JSON.parse(localStorage.getItem('isSidebarOpen') || 'false')
+    );
+  }, []);
 
   return (
-    <div className="bg bg-secondary hover:border-primary fixed right-4 bottom-4 cursor-pointer rounded-full p-7 transition-shadow hover:shadow-[3px_3px_10px_-0.5px_#16bdf9]">
-      <LightningIcon />
-      <button
-        className="absolute right-0 bottom-20 left-0 z-10 flex items-center justify-center"
-        onClick={() => mutateAsync({ question: 'How are you?', userId })}
-      >
-        <span className="bg-primary text-white">Ask a question</span>
-      </button>
-    </div>
+    <>
+      <Trigger isOpen={isSidebarOpen} handleClick={handleClick} />
+      <BuddySidebar
+        isOpen={isSidebarOpen}
+        onClose={() => $changeSidebarOpenState(false)}
+        userId={userId}
+      />
+    </>
   );
 };
 
