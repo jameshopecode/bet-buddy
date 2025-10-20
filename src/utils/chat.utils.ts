@@ -1,4 +1,8 @@
-import type { ChatHistoryT, IChatResponse } from 'src/model/chat.model.ts';
+import {
+  type ChatHistoryT,
+  getMatchesWithMarketsUrl,
+  type IChatResponse,
+} from 'src/model/chat.model.ts';
 
 export const saveChatHistoryToLS = (chatHistory: ChatHistoryT) => {
   localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
@@ -19,4 +23,18 @@ export const sanitizeChatResponse = (response: IChatResponse) => {
     return 'I’m sorry, but I can only help with fixtures, betting, or gambling questions.';
   }
   return answer;
+};
+
+export const tryRedirectingToMarketsPage = (response: IChatResponse) => {
+  const hasMetadata =
+    'metadata' in response &&
+    !!response.metadata &&
+    Object.keys(response.metadata || {}).length > 0;
+
+  if (!hasMetadata) {
+    return;
+  }
+
+  const { metadata } = response;
+  window.location.href = getMatchesWithMarketsUrl(metadata);
 };

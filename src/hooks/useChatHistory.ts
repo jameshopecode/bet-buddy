@@ -13,7 +13,7 @@ export const useChatHistory = (userId: string) => {
   const askQuestion = (question: string) => {
     const newChatHistory = [
       ...(contextChatHistoryForUser ?? []),
-      { question, answer: null },
+      { question, answer: null, metadata: null },
     ];
     setChatHistory({
       [userId]: newChatHistory,
@@ -29,7 +29,7 @@ export const useChatHistory = (userId: string) => {
 
     const newChatHistory = [
       ...(currentChatHistoryForUser ?? []),
-      { question: null, answer },
+      { question: null, answer, metadata: response?.metadata || null },
     ];
 
     setChatHistory({
