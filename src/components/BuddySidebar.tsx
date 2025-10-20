@@ -36,7 +36,7 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
       console.log('error: ', e);
       handleChatResponse({
         answer:
-          'I’m sorry, but I can only help with fixtures, betting, or gambling questions.',
+          'I’m sorry, but I can only help with fixtures, betting, or gambling questions right now. Try again later.',
       } as unknown as IChatResponse);
     } finally {
       scrollDown();
