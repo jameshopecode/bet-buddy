@@ -2,7 +2,8 @@ import type { IMarket } from 'src/model/market.model.ts';
 
 export interface IMatch {
   id: number
-  teams: { home: string, away: string }
+  home: string
+  away: string
   competition: string
   startTime: string
   game: string // cs2 / football

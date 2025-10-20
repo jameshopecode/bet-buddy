@@ -22,9 +22,9 @@ const MatchRow: FC<IMatchRowProps> = ({ match }) => {
         {format(match.startTime, "yyyy-MM-dd HH:mm")}
       </div>
       <div className="inline-flex gap-2 justify-center [grid-area:teams] font-bold">
-        <span>{match.teams.home}</span>
+        <span>{match.home}</span>
         <span className="text-gray-400">vs</span>
-        <span>{match.teams.away}</span>
+        <span>{match.away}</span>
       </div>
       <a href={match.url} className="justify-self-end flex items-center flex-row gap-2 font-bold transition-colors bg-gray-100/0 hover:bg-gray-100/10 -m-2 p-4 [grid-area:button]">
         <div className="text-md/14px -mb-[2px]">{Object.keys(match.markets).length}</div>

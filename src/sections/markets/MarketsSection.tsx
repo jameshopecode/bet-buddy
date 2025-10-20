@@ -29,9 +29,9 @@ const MarketsSection: FC<IMarketsSectionProps> = ({ className, match }) => {
           </div>
         </div>
         <div className="inline-flex justify-center gap-2 font-bold">
-          <span>{match.teams.home}</span>
+          <span>{match.home}</span>
           <span className="text-gray-400">vs</span>
-          <span>{match.teams.away}</span>
+          <span>{match.away}</span>
         </div>
         <div className="self-center justify-self-end text-sm whitespace-nowrap text-gray-400">
           {format(match.startTime, 'yyyy-MM-dd HH:mm')}
