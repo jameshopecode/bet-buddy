@@ -4,6 +4,7 @@ import { getMatchUrl, type MatchesResponse } from 'src/model/match.model.ts';
 import { mapValues, pick, pickBy } from 'lodash-es';
 import { getMarketUrl } from 'src/model/market.model.ts';
 import { useCallback } from 'react';
+import type { MatchesMarketsMetadata } from 'src/model/chat.model.ts';
 
 interface IUseMatchesInput<R = MatchesResponse> {
   select?(response: MatchesResponse): R

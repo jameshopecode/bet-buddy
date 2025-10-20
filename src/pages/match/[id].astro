@@ -1,6 +1,6 @@
 ---
-import MarketsSection from 'src/sections/markets/MarketsSection.tsx';
 import Layout from 'src/layouts/Layout.astro';
+import MatchPage from 'src/sections/markets/MatchPage.tsx';
 
 interface Params {
   id: string
@@ -11,7 +11,5 @@ const id = Number(idString);
 ---
 
 <Layout>
-  <main class="flex flex-col gap-4">
-    <MarketsSection id={id} client:only />
-  </main>
+    <MatchPage id={id} client:only />
 </Layout>

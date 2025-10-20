@@ -1,44 +1,47 @@
 import { type FC } from 'react';
-import { getMatch, useMatches } from 'src/hooks/useMatches.ts';
 import { cn } from 'src/utils/cn.ts';
 import { format } from 'date-fns';
 import MarketRow from 'src/sections/markets/components/MarketRow.tsx';
+import type { IMatch } from 'src/model/match.model.ts';
 
 interface IMarketsSectionProps {
-  id: number
+  className?: string
+  match?: IMatch
 }
 
-const MarketsSection: FC<IMarketsSectionProps> = ({ id }) => {
-  const { data: match } = useMatches({ select: getMatch(id) });
-
+const MarketsSection: FC<IMarketsSectionProps> = ({ className, match }) => {
   if (!match) {
     return null;
   }
 
-  return <div className="flex flex-col gap-2">
-    <div
-      className={cn(
-        "grid grid-cols-[100px_1fr_100px] gap-4",
-        "rounded-md py-1 overflow-hidden mb-2"
-      )}
-    >
-      <div className="flex flex-nowrap gap-4">
-        <div className="font-bold whitespace-nowrap">{match.game}</div>
-        <div className="text-gray-400 text-sm self-center whitespace-nowrap">{match.competition}</div>
+  return (
+    <div className={cn('flex flex-col gap-2', className)}>
+      <div
+        className={cn(
+          'grid grid-cols-[100px_1fr_100px] gap-4',
+          'mb-2 overflow-hidden rounded-md py-1'
+        )}
+      >
+        <div className="flex flex-nowrap gap-4">
+          <div className="font-bold whitespace-nowrap">{match.game}</div>
+          <div className="self-center text-sm whitespace-nowrap text-gray-400">
+            {match.competition}
+          </div>
+        </div>
+        <div className="inline-flex justify-center gap-2 font-bold">
+          <span>{match.teams.home}</span>
+          <span className="text-gray-400">vs</span>
+          <span>{match.teams.away}</span>
+        </div>
+        <div className="self-center justify-self-end text-sm whitespace-nowrap text-gray-400">
+          {format(match.startTime, 'yyyy-MM-dd HH:mm')}
+        </div>
       </div>
-      <div className="inline-flex gap-2 justify-center font-bold">
-        <span>{match.teams.home}</span>
-        <span className="text-gray-400">vs</span>
-        <span>{match.teams.away}</span>
-      </div>
-      <div className="text-sm text-gray-400 self-center whitespace-nowrap justify-self-end">
-        {format(match.startTime, "yyyy-MM-dd HH:mm")}
-      </div>
+      {Object.values(match.markets).map(market => (
+        <MarketRow key={market.id} market={market} />
+      ))}
     </div>
-    {Object.values(match.markets).map(market => (
-      <MarketRow key={market.id} market={market} />
-    ))}
-  </div>;
+  );
 };
 
 export default MarketsSection;

@@ -1,0 +1,13 @@
+---
+import Layout from 'src/layouts/Layout.astro';
+import MarketsPage from 'src/sections/markets/MarketsPage.tsx';
+interface Params {
+  metadata: string
+}
+
+const { metadata: metadataString } = Astro.params as Params & Record<string, string | undefined>;
+---
+
+<Layout>
+  <MarketsPage metadataString={metadataString} client:only />
+</Layout>
