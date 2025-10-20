@@ -16,6 +16,13 @@
   }
 }
 
+@layer components {
+  /* small helper for the multi-part box-shadow */
+  .loader-shadow {
+    box-shadow: 32px 0 #fff, -32px 0 #fff;
+  }
+}
+
 @theme {
   --header-height: 60px;
 
@@ -34,6 +41,24 @@
   --color-warning-secondary: #753712;
   --color-info: #094C64;
   --color-info-secondary: #A2E5FD;
+
+  --animate-flash: flash 0.5s ease-out infinite alternate;
+
+  @keyframes flash {
+    0% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 #FFF2, -32px 0 #FFF;
+    }
+    50% {
+      background-color: #FFF;
+      box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+    }
+    100% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 #FFF, -32px 0 #FFF2;
+    }
+  }
+
 }
 
 @font-face {
