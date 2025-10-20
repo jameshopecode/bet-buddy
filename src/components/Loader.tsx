@@ -7,9 +7,11 @@ type Props = {
 const Loader: FC<Props> = ({ className = '' }) => {
   return (
     <span
-      className={`loader animate-flash relative mt-4 ml-8 h-4 w-4 rounded-full bg-white ${className} scale-75`}
+      className={`loader animate-flash relative mt-4 mb-4 ml-8 h-4 w-4 rounded-full bg-white ${className} scale-75 text-transparent`}
       aria-hidden="true"
-    />
+    >
+      _
+    </span>
   );
 };
 
