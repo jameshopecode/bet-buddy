@@ -16,7 +16,7 @@ namespace BetBuddy.Backend.Api.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<ActionResult<IEnumerable<MatchDto>>> All()
+        public async Task<ActionResult<IDictionary<long,MatchDto>>> All()
         {
             var matches = await _fixtureRepository.GetAllMatchesWithMarketsAndSelections();
             return Ok(matches);

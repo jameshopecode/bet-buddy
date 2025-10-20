@@ -1,23 +1,19 @@
-import startCase from "lodash-es/startCase";
 import  { type FC, useState } from 'react';
 import { useMatches } from 'src/hooks/useMatches.ts';
-import TextInput from 'src/components/speech-to-text-input/TextInput.tsx';
+import MatchRow from 'src/sections/matches/components/MatchRow.tsx';
 
-interface IMatchesSectionProps {
-  pathname: string
-}
-
-const MatchesSection: FC<IMatchesSectionProps> = ({ pathname }) => {
-  const page = startCase(pathname);
+const MatchesSection: FC = () => {
   const { matches } = useMatches({ pageSize: 100 });
   const [value, setValue] = useState("");
 
-  console.log("MatchesSection", matches);
-
-  return <main className="grid">
-      <h1>{page}</h1>
-      <TextInput value={value} onChange={setValue} />
-  </main>
+  return (
+    <main className="flex flex-col gap-4">
+      <h1 className="text-lg font-bold text-center">Bet on matches</h1>
+      {Object.values(matches ?? {}).map(match => (
+        <MatchRow key={match.id} match={match} />
+      ))}
+    </main>
+  );
 };
 
 export default MatchesSection;
