@@ -36,7 +36,5 @@ export const tryRedirectingToMarketsPage = (response: IChatResponse) => {
   }
 
   const { metadata } = response;
-  const url = getMatchesWithMarketsUrl(metadata);
-
-  window.location.href = url;
+  window.location.href = getMatchesWithMarketsUrl(metadata);
 };
