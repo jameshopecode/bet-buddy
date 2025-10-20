@@ -1,6 +1,6 @@
-export const LightningIcon = () => (
+export const LightningIcon = ({ className }: { className?: string }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    className={className}
     viewBox="82.7248 0.04187 26.5692 25.95813"
     width="26.5692"
     height="25.95813"

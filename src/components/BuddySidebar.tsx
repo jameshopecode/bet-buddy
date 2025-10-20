@@ -6,6 +6,7 @@ import Message from 'src/components/Message.tsx';
 import type { IChatResponse } from 'src/model/chat.model.ts';
 import Loader from 'src/components/Loader.tsx';
 import { tryRedirectingToMarketsPage } from 'src/utils/chat.utils.ts';
+import { LightningIcon } from 'src/components/icons/LightningIcon.tsx';
 
 type Props = {
   userId: string;
@@ -50,6 +51,7 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
 
   return (
     <div className="bg-secondary border-dark fixed top-15 right-0 bottom-0 z-10 w-100 border-[1px] p-2">
+      <LightningIcon className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] scale-300 text-white opacity-10" />
       <section className="flex h-full flex-col rounded-md">
         <div className="flex h-full grow flex-col gap-4 overflow-y-auto">
           {messages.map((message, index) => (
