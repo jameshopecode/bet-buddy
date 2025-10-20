@@ -15,6 +15,14 @@ export default defineConfig({
   output: 'server',
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      proxy: {
+        "/api": {
+          target: "http://209.38.253.188:5200",
+          changeOrigin: true,
+        },
+      },
+    }
   }
 });
