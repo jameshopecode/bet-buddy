@@ -25,7 +25,7 @@ const MetadataConsumer: FC<Props> = ({ message }) => {
         href={url}
         rel="noreferrer"
       >
-        See your match
+        Browse markets
         <FaArrowRight />
       </a>
     </div>
