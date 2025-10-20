@@ -1,4 +1,4 @@
-interface IMarket {
+export interface IMarket {
   id: number;
   matchId: number;
   name: string
