@@ -8,6 +8,7 @@ namespace BetBuddy.Backend.Api.Ai;
 public interface IBetBuddyAgent
 {
     Task<string> Interact(string prompt, string modelUserId);
+    void Cleanup();
 }
 public class BetBuddyAgent : IBetBuddyAgent
 {
@@ -85,8 +86,6 @@ public class BetBuddyAgent : IBetBuddyAgent
             chatHistory = new ChatHistoryAgentThread();
             _chatHistoryDict.Add(userId, chatHistory);
         }
-
-        //chatHistory.ChatHistory.AddUserMessage(prompt);
         
         var response = "";
         var options = new AgentInvokeOptions { KernelArguments = new KernelArguments(new OllamaPromptExecutionSettings()
@@ -98,9 +97,13 @@ public class BetBuddyAgent : IBetBuddyAgent
         await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt,chatHistory, options: options))
         {
             response += message.Message.Content;
-            //chatHistory.ChatHistory.Add(message);
         }
 
         return response;
+    }
+
+    public void Cleanup()
+    {
+        _chatHistoryDict.Clear();
     }
 }
