@@ -26,6 +26,7 @@ services:
     build:
       context: .
       dockerfile: BetBuddy.Backend/Dockerfile
+    container_name: buddy-api
     ports:
       - "5200:5200"
     networks:
