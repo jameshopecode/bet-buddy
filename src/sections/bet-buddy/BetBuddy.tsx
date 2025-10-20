@@ -1,9 +1,6 @@
 import type { FC } from 'react';
 import { LightningIcon } from 'src/components/icons/LightningIcon.tsx';
-import { useEffect } from 'react';
 import BuddySidebar from 'src/components/BuddySidebar.tsx';
-import { useStore } from '@nanostores/react';
-import { $changeSidebarOpenState, $isOpen } from 'src/stores/chat.ts';
 import { cn } from 'src/utils/cn.ts';
 
 type Props = {
@@ -29,27 +26,9 @@ const Trigger = ({
 );
 
 const BetBuddy: FC<Props> = ({ userId }) => {
-  const isSidebarOpen = useStore($isOpen);
-
-  const handleClick = () => {
-    $changeSidebarOpenState(!isSidebarOpen);
-    localStorage.setItem('isSidebarOpen', JSON.stringify(!isSidebarOpen));
-  };
-
-  useEffect(() => {
-    $changeSidebarOpenState(
-      JSON.parse(localStorage.getItem('isSidebarOpen') || 'false')
-    );
-  }, []);
-
   return (
     <>
-      <Trigger isOpen={isSidebarOpen} handleClick={handleClick} />
-      <BuddySidebar
-        isOpen={isSidebarOpen}
-        onClose={() => $changeSidebarOpenState(false)}
-        userId={userId}
-      />
+      <BuddySidebar userId={userId} />
     </>
   );
 };

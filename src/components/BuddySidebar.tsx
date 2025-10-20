@@ -1,29 +1,12 @@
 import { type FC, useState } from 'react';
 import TextInput from 'src/components/speech-to-text-input/TextInput.tsx';
 import { useBetBuddy } from 'src/hooks/useBetBuddy.ts';
-import { FaArrowRight } from 'react-icons/fa';
-import { $changeSidebarOpenState } from 'src/stores/chat.ts';
 
 type Props = {
-  isOpen: boolean;
-  onClose: () => void;
   userId: string;
 };
 
-const CloseIcon = () => {
-  const handleClose = () => {
-    $changeSidebarOpenState(false);
-    localStorage.setItem('isSidebarOpen', JSON.stringify(false));
-  };
-  return (
-    <FaArrowRight
-      className="bg-dark transision:colors fixed right-7 bottom-7 size-14 cursor-pointer rounded-full p-4 hover:bg-black"
-      onClick={handleClose}
-    />
-  );
-};
-
-const BuddySidebar: FC<Props> = ({ isOpen, userId }) => {
+const BuddySidebar: FC<Props> = ({ userId }) => {
   const { mutateAsync: askBuddy, data } = useBetBuddy();
   const [value, setValue] = useState('');
 
@@ -31,17 +14,16 @@ const BuddySidebar: FC<Props> = ({ isOpen, userId }) => {
     void askBuddy({ question: value, userId });
   };
 
-  return isOpen ? (
+  return (
     <div className="bg-secondary border-dark fixed top-15 right-0 bottom-0 z-10 w-100 border-[1px] p-2">
-      <CloseIcon />
-      <section className="flex h-[calc(100%-90px)] flex-col rounded-md">
+      <section className="flex h-full flex-col rounded-md">
         <div className="h-full grow">
           <p>tutaj są dymki</p>
         </div>
         <TextInput value={value} onChange={setValue} onSubmit={handleSubmit} />
       </section>
     </div>
-  ) : null;
+  );
 };
 
 export default BuddySidebar;

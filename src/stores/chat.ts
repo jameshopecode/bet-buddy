@@ -7,13 +7,7 @@ import type {
 
 type MessageT = IChatRequest | IChatResponse;
 
-export const $isOpen = atom(false);
-
 export const $chatHistory = deepMap<ChatHistoryT>({});
-
-export const $changeSidebarOpenState = (isOpen: boolean) => {
-  $isOpen.set(isOpen);
-};
 
 export const $addMessageToChatHistory = (userId: string, message: MessageT) => {
   const userChatHistory = $chatHistory.get()[userId];

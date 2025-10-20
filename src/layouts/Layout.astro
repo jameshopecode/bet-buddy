@@ -63,7 +63,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
           </aside>
         </header>
       </div>
-      <div class="mx-auto w-full max-w-[1400px]">
+      <div class="mx-auto grid w-full max-w-[1400px] grid-cols-[1fr_400px]">
         <slot />
         <BetBuddy userId={user?.id || ''} client:only />
       </div>
