@@ -1,3 +1,4 @@
+using BetBuddy.Backend.Api.Dtos;
 using Dapper;
 using Npgsql;
 
@@ -47,5 +48,60 @@ public class FixtureRepository
                 m.id, m.start_time, m.home, m.away, m.competition, m.game;
         ";
         return await connection.QueryAsync<Fixture>(query);
+    }
+
+    public async Task<IEnumerable<MatchDto>> GetAllMatchesWithMarketsAndSelections()
+    {
+        await using var connection = new NpgsqlConnection(_connectionString);
+        var sql = @"
+            SELECT
+                m.id, m.home, m.away, m.competition, m.start_time, m.game,
+                mk.id, mk.name, mk.market_type,
+                s.id, s.name, s.odds
+            FROM
+                matches m
+            LEFT JOIN
+                markets mk ON m.id = mk.match_id
+            LEFT JOIN
+                selections s ON mk.id = s.market_id
+            ORDER BY
+                m.id, mk.id, s.id;
+        ";
+
+        var matchDictionary = new Dictionary<long, MatchDto>();
+
+        await connection.QueryAsync<MatchDto, MarketDto, SelectionDto, MatchDto>(
+            sql,
+            (match, market, selection) =>
+            {
+                if (!matchDictionary.TryGetValue(match.Id, out var currentMatch))
+                {
+                    currentMatch = match;
+                    currentMatch.Markets = new List<MarketDto>();
+                    matchDictionary.Add(currentMatch.Id, currentMatch);
+                }
+
+                if (market != null)
+                {
+                    var currentMarket = currentMatch.Markets.FirstOrDefault(m => m.Id == market.Id);
+                    if (currentMarket == null)
+                    {
+                        currentMarket = market;
+                        currentMarket.Selections = new List<SelectionDto>();
+                        currentMatch.Markets.Add(currentMarket);
+                    }
+
+                    if (selection != null)
+                    {
+                        currentMarket.Selections.Add(selection);
+                    }
+                }
+
+                return currentMatch;
+            },
+            splitOn: "id,id,id"
+        );
+
+        return matchDictionary.Values;
     }
 }
