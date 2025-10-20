@@ -1,20 +1,25 @@
 import {
   type ChangeEvent,
-  type ComponentProps,
+  type ComponentProps, type FC,
   useCallback,
   useState,
 } from 'react';
 import { cn } from 'src/utils/cn.ts';
 
-const TextInput = ({
-  className,
-  ...props
-}: ComponentProps<'textarea'>) => {
-  const [value, setValue] = useState('');
+interface Props extends Omit<ComponentProps<'textarea'>, "onChange"> {
+  value: string
+  onChange(value: string): void
+}
 
+const TextInput: FC<Props> = ({
+  className,
+  value,
+  onChange,
+  ...props
+}) => {
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLTextAreaElement>) => {
-      setValue(event.target.value);
+      onChange(event.target.value);
     },
     []
   );
