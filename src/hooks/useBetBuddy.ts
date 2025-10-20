@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { queryClient } from 'src/core/query/query-client.ts';
 
 export const useBetBuddy = () => {
@@ -20,7 +20,7 @@ export const useBetBuddy = () => {
             question,
             userId,
           }),
-        }),
+        }).then(response => response.json()),
     },
     queryClient
   );
