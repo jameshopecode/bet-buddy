@@ -8,25 +8,25 @@ CREATE TABLE "matches" (
   PRIMARY KEY (id)
 );
 
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425345, 'FC Kairat Almaty', 'Pafos FC', 'CHAMPIONS LEAGUE', '2025-10-21 16:45:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1429602, 'FC Barcelona', 'Olympiacos', 'CHAMPIONS LEAGUE', '2025-10-21 16:45:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425560, 'Bayer Leverkusen', 'Paris Saint-Germain', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425608, 'Villarreal', 'Manchester City', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425633, 'Newcastle United', 'Benfica', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1427575, 'FC Copenhagen', 'Borussia Dortmund', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1429603, 'Arsenal', 'Atletico Madrid', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1429601, 'Union Saint Gilloise', 'Inter Milan', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1445672, 'PSV Eindhoven', 'Napoli', 'CHAMPIONS LEAGUE', '2025-10-21 19:00:00.000000 +00:00', 'Football');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482239, 'Natus Vincere Junior', 'Team Yandex', 'DreamLeague Division 2 Season 1: Group Stage', '2025-10-17 12:30:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482244, 'Pipsqueak+4', '4Pirates', 'DreamLeague Division 2 Season 1: Group Stage', '2025-10-17 12:30:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482243, 'Roar Gaming', 'Team Tea', 'DreamLeague Division 2 Season 1: Group Stage', '2025-10-17 12:30:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480653, 'Falcons', 'Execration', 'BLAST Slam IV', '2025-10-17 13:00:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480773, 'Team Liquid', 'Team Spirit', 'BLAST Slam IV', '2025-10-17 13:00:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480655, 'MOUZ', 'BB Team', 'BLAST Slam IV', '2025-10-17 14:00:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480656, 'HEROIC', 'Aurora Gaming', 'BLAST Slam IV', '2025-10-17 14:00:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482538, 'Team Tea', '20Twice', 'European Pro League Season 31', '2025-10-17 15:00:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480657, 'Tundra Esports', 'Execration', 'BLAST Slam IV', '2025-10-17 15:00:00.000000 +00:00', 'DOTA 2');
-INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480774, 'Yakutou Brothers', 'Team Spirit', 'BLAST Slam IV', '2025-10-17 15:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425345, 'FC Kairat Almaty', 'Pafos FC', 'CHAMPIONS LEAGUE', '2025-10-22 16:45:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1429602, 'FC Barcelona', 'Olympiacos', 'CHAMPIONS LEAGUE', '2025-10-22 16:45:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425560, 'Bayer Leverkusen', 'Paris Saint-Germain', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425608, 'Villarreal', 'Manchester City', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1425633, 'Newcastle United', 'Benfica', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1427575, 'FC Copenhagen', 'Borussia Dortmund', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1429603, 'Arsenal', 'Atletico Madrid', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1429601, 'Union Saint Gilloise', 'Inter Milan', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1445672, 'PSV Eindhoven', 'Napoli', 'CHAMPIONS LEAGUE', '2025-10-22 19:00:00.000000 +00:00', 'Football');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482239, 'Natus Vincere Junior', 'Team Yandex', 'DreamLeague Division 2 Season 1: Group Stage', '2025-10-23 12:30:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482244, 'Pipsqueak+4', '4Pirates', 'DreamLeague Division 2 Season 1: Group Stage', '2025-10-23 12:30:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482243, 'Roar Gaming', 'Team Tea', 'DreamLeague Division 2 Season 1: Group Stage', '2025-10-23 12:30:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480653, 'Falcons', 'Execration', 'BLAST Slam IV', '2025-10-23 13:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480773, 'Team Liquid', 'Team Spirit', 'BLAST Slam IV', '2025-10-23 13:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480655, 'MOUZ', 'BB Team', 'BLAST Slam IV', '2025-10-23 14:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480656, 'HEROIC', 'Aurora Gaming', 'BLAST Slam IV', '2025-10-23 14:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1482538, 'Team Tea', '20Twice', 'European Pro League Season 31', '2025-10-23 15:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480657, 'Tundra Esports', 'Execration', 'BLAST Slam IV', '2025-10-23 15:00:00.000000 +00:00', 'DOTA 2');
+INSERT INTO "matches"(id, home, away, competition, start_time, game) VALUES (1480774, 'Yakutou Brothers', 'Team Spirit', 'BLAST Slam IV', '2025-10-23 15:00:00.000000 +00:00', 'DOTA 2');
 
 
 CREATE TABLE "markets" (
@@ -2846,7 +2846,7 @@ INSERT INTO selections (id, market_id, name, odds) VALUES (195819672, 76371642, 
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819679, 76371645, 'Natus Vincere Junior', 2.82);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819678, 76371645, 'Team Yandex', 1.38);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819687, 76371647, 'yes', 12.52);
-INSERT INTO selections (id, market_id, name, odds) VALUES (195819686, 76371647, 'no', 1.00);
+INSERT INTO selections (id, market_id, name, odds) VALUES (195819686, 76371647, 'no', 1.23);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819689, 76371649, 'Natus Vincere Junior', 1.69);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819688, 76371649, 'Team Yandex', 2.06);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819693, 76371651, 'Natus Vincere Junior', 2.49);
@@ -2862,7 +2862,7 @@ INSERT INTO selections (id, market_id, name, odds) VALUES (195819706, 76371658, 
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819709, 76371659, 'Natus Vincere Junior', 3.32);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819708, 76371659, 'Team Yandex', 1.29);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819711, 76371660, 'yes', 12.52);
-INSERT INTO selections (id, market_id, name, odds) VALUES (195819710, 76371660, 'no', 1.00);
+INSERT INTO selections (id, market_id, name, odds) VALUES (195819710, 76371660, 'no', 1.12);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819719, 76371663, 'Natus Vincere Junior', 2.99);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819718, 76371663, 'Team Yandex', 1.35);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819721, 76371664, 'Natus Vincere Junior', 1.43);
@@ -2950,9 +2950,9 @@ INSERT INTO selections (id, market_id, name, odds) VALUES (195819974, 76371781, 
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819993, 76371790, 'yes', 2.76);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819992, 76371790, 'no', 1.40);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819817, 76371702, 'Natus Vincere Junior', 11.45);
-INSERT INTO selections (id, market_id, name, odds) VALUES (195819816, 76371702, 'Team Yandex', 1.00);
+INSERT INTO selections (id, market_id, name, odds) VALUES (195819816, 76371702, 'Team Yandex', 1.45);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819797, 76371692, 'Natus Vincere Junior', 12.62);
-INSERT INTO selections (id, market_id, name, odds) VALUES (195819796, 76371692, 'Team Yandex', 1.00);
+INSERT INTO selections (id, market_id, name, odds) VALUES (195819796, 76371692, 'Team Yandex', 1.65);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819829, 76371708, 'Natus Vincere Junior', 8.72);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819828, 76371708, 'Team Yandex', 1.04);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195819725, 76371667, 'Natus Vincere Junior', 8.72);
@@ -3056,7 +3056,7 @@ INSERT INTO selections (id, market_id, name, odds) VALUES (195822386, 76372917, 
 INSERT INTO selections (id, market_id, name, odds) VALUES (195822297, 76372872, 'Pipsqueak+4', 1.61);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195822296, 76372872, '4Pirates', 2.13);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195822327, 76372886, 'yes', 11.32);
-INSERT INTO selections (id, market_id, name, odds) VALUES (195822326, 76372886, 'no', 1.00);
+INSERT INTO selections (id, market_id, name, odds) VALUES (195822326, 76372886, 'no', 1.76);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195821964, 76372721, '4Pirates', 2.34);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195821965, 76372721, 'Pipsqueak+4', 1.51);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195821773, 76372626, 'yes', 2.64);
@@ -3184,7 +3184,7 @@ INSERT INTO selections (id, market_id, name, odds) VALUES (195822374, 76372911, 
 INSERT INTO selections (id, market_id, name, odds) VALUES (195822340, 76372893, '4Pirates', 2.40);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195822341, 76372893, 'Pipsqueak+4', 1.52);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195822248, 76372848, 'yes', 11.32);
-INSERT INTO selections (id, market_id, name, odds) VALUES (195822247, 76372848, 'no', 1.00);
+INSERT INTO selections (id, market_id, name, odds) VALUES (195822247, 76372848, 'no', 1.19);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195881276, 76394533, 'Team Tea', 1.36);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195881275, 76394533, '20Twice', 2.90);
 INSERT INTO selections (id, market_id, name, odds) VALUES (195881274, 76394532, 'Team Tea', 1.07);
