@@ -6,6 +6,12 @@ interface Params {
 }
 
 const { metadata: metadataString } = Astro.params as Params & Record<string, string | undefined>;
+
+const { isAuthenticated } = Astro.locals.auth();
+
+if (!isAuthenticated) {
+  return Astro.redirect('/signin');
+}
 ---
 
 <Layout>

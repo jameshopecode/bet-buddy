@@ -1,6 +1,12 @@
 ---
 import Layout from 'src/layouts/Layout.astro';
 import MatchesSection from '../sections/matches/MatchesSection.js';
+
+const { isAuthenticated } = Astro.locals.auth();
+
+if (!isAuthenticated) {
+  return Astro.redirect('/signin');
+}
 ---
 <Layout>
   <MatchesSection client:only />

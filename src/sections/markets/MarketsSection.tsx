@@ -3,6 +3,7 @@ import { cn } from 'src/utils/cn.ts';
 import { format } from 'date-fns';
 import MarketRow from 'src/sections/markets/components/MarketRow.tsx';
 import type { IMatch } from 'src/model/match.model.ts';
+import { isEmpty } from 'lodash-es';
 
 interface IMarketsSectionProps {
   className?: string
@@ -10,7 +11,7 @@ interface IMarketsSectionProps {
 }
 
 const MarketsSection: FC<IMarketsSectionProps> = ({ className, match }) => {
-  if (!match) {
+  if (!match || isEmpty(match.markets)) {
     return null;
   }
 

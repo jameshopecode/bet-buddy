@@ -4,7 +4,6 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-  SignInButton,
 } from '@clerk/astro/components';
 import BetBuddyLogo from '../assets/bet-buddy-logo.png';
 import { capitalize } from '../utils/text.utils';
@@ -14,6 +13,7 @@ import { IoTicketOutline } from 'react-icons/io5';
 import { FaQuestion } from 'react-icons/fa';
 import { TbWorldQuestion } from 'react-icons/tb';
 import NavLink from 'src/components/NavLink.astro';
+import { cn } from 'src/utils/cn.ts';
 
 const user = await Astro.locals.currentUser();
 const userName = user?.firstName ? capitalize(user.firstName) : '';
@@ -51,9 +51,7 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
           </nav>
           <aside class="flex items-center gap-4">
             <SignedOut>
-              <SignInButton asChild={true}>
-                <button class="cursor-pointer p-4 text-white">Sign in</button>
-              </SignInButton>
+              <NavLink to="/signin" text="Sign in" />
             </SignedOut>
             <SignedIn>
               <aside>Bet bright{userName ? <>, {userName}</> : '!'}</aside>
@@ -62,9 +60,11 @@ const userName = user?.firstName ? capitalize(user.firstName) : '';
           </aside>
         </header>
       </div>
-      <div class="mx-auto grid w-full max-w-[1400px] grid-cols-[1fr_400px]">
+      <div class={cn("mx-auto grid w-full max-w-[1400px]", {
+        "grid-cols-[1fr_400px]": !!user,
+      })}>
         <slot />
-        <BetBuddy userId={user?.id || ''} client:only />
+        {user && <BetBuddy userId={user?.id || ''} client:only />}
       </div>
     </div>
   </body>
