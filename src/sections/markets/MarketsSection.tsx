@@ -25,7 +25,7 @@ const MarketsSection: FC<IMarketsSectionProps> = ({ className, match }) => {
       >
         <div className="flex flex-nowrap gap-4">
           <div className="font-bold whitespace-nowrap">{match.game}</div>
-          <div className="self-center text-sm whitespace-nowrap text-gray-400">
+          <div className="self-center text-sm whitespace-nowrap text-gray-400 flex-shrink-0 w-[170px] truncate">
             {match.competition}
           </div>
         </div>
