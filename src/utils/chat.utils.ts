@@ -5,7 +5,16 @@ import {
 } from 'src/model/chat.model.ts';
 
 export const saveChatHistoryToLS = (chatHistory: ChatHistoryT) => {
-  localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+  const currentChatHistoryInLS = JSON.parse(
+    localStorage.getItem('chatHistory') || '{}'
+  );
+
+  const newChatHistory = {
+    ...currentChatHistoryInLS,
+    ...chatHistory,
+  };
+
+  localStorage.setItem('chatHistory', JSON.stringify(newChatHistory));
 };
 
 export const getCurrentChatHistoryForUserFromLS = (userId: string) => {
