@@ -19,7 +19,7 @@ public class FixturesVectorStore
     
     [KernelFunction("SearchFixtures")]
     [Description("Search for all upcomming fixtures, matches with markets based on user requirements")]
-    public async Task<Fixture[]> SearchCarsAsync(
+    public async Task<Fixture[]> SearchFixturesAsync(
         [Description("The search query describing what kind of fixtures, matchs or markets looking for")]
         string query)
     {
@@ -30,7 +30,8 @@ public class FixturesVectorStore
  
         var searchOptions = new VectorSearchOptions<Fixture>
         {
-            VectorProperty = m => m.DescriptionEmbedding
+            VectorProperty = m => m.DescriptionEmbedding,
+            IncludeVectors = false
         };
 
 

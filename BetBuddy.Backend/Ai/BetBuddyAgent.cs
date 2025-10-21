@@ -74,14 +74,7 @@ public class BetBuddyAgent : IBetBuddyAgent
                                 }
             }
 ",
-            Kernel = kernel,
-            Arguments = new KernelArguments(new OllamaPromptExecutionSettings()
-            {
-                FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
-                Temperature = 0.4f,
-                NumPredict = 1024,
-                TopP = 0.6f
-            })
+            Kernel = kernel
         };
     }
 
@@ -98,9 +91,7 @@ public class BetBuddyAgent : IBetBuddyAgent
         var options = new AgentInvokeOptions { KernelArguments = new KernelArguments(new OllamaPromptExecutionSettings()
         {
             FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
-            Temperature = 0.4f,
-            NumPredict = 1024,
-            TopP = 0.6f
+            NumPredict = 6000
         }) };
         
         await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt,chatHistory, options: options))
