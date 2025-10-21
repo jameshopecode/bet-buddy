@@ -55,8 +55,8 @@ public class FixtureRepository
         await using var connection = new NpgsqlConnection(_connectionString);
         var sql = @"
             SELECT
-                m.id, m.home, m.away, m.competition, m.start_time, m.game,
-                mk.id, mk.name, mk.market_type,
+                m.id, m.home, m.away, m.competition, m.start_time as startTime, m.game,
+                mk.id, mk.name, mk.market_type as MarketType,
                 s.id, s.name, s.odds
             FROM
                 matches m

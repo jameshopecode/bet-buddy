@@ -23,7 +23,7 @@ namespace BetBuddy.Backend.Api.Dtos
         public string Home { get; set; }
         public string Away { get; set; }
         public string Competition { get; set; }
-        public System.DateTimeOffset StartTime { get; set; }
+        public System.DateTime StartTime { get; set; }
         public string Game { get; set; }
         public IDictionary<long, MarketDto> Markets { get; set; }
     }
