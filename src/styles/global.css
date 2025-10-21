@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@plugin "tailwind-scrollbar" {
+  nocompatible: true;
+  preferredStrategy: 'pseudoelements';
+}
 
 @layer base {
   div, span, h1, h2, h3, h4, h5, p {
@@ -13,6 +17,15 @@
   main {
     @apply p-2.5 md:p-5;
     min-height: calc(100dvh - var(--header-height));
+  }
+}
+
+@utility thp-scrollbar {
+  @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-thumb-rounded-full scrollbar-track-[transparent];
+
+  /* Styling the scrollbar in Safari */
+  &::-webkit-scrollbar {
+    width: 6px;
   }
 }
 
