@@ -69,7 +69,7 @@ const BuddySidebar: FC<Props> = ({ userId }) => {
             <IoTrashOutline />
           }
         </button>
-        <div className="flex h-full grow flex-col gap-4 overflow-y-auto">
+        <div className="flex h-full grow flex-col gap-4 overflow-y-auto thp-scrollbar">
           {messages.map((message, index) => (
             <Message key={index} message={message} />
           ))}
