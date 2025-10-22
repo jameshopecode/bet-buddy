@@ -1,17 +1,37 @@
 version: '3.8'
 
+x-service: &service
+  tty: true
+  stdin_open: true
+  restart: 'unless-stopped'
+
+x-node: &node
+  << : *service
+  user: "${UID:-1000}:${GID:-1000}"
+  build:
+    context: .
+    dockerfile: Dockerfile.Node
+    args:
+      UID: "${UID:-1000}"
+      GID: "${GID:-1000}"
+
 services:
-  # Aplikacja webowa
-  # voice-assistant:
-  #   build: 
-  #     context: .
-  #     dockerfile: dockerfile
-  #   container_name: voice-assistant-app
-  #   networks:
-  #     - voice-network
-  #   restart: unless-stopped
-  #   ports:
-  #     - "8088:8080"
+  web-app:
+    << : *node
+    container_name: web-app
+    working_dir: /home/node/web-app
+    volumes:
+      - ".:/home/node/web-app"
+    command: bash -c "pnpm i && pnpm dev"
+    ports:
+      - "4321:4321"
+    networks:
+      - buddy-network
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
 
   # Reverse proxy Nginx
   nginx-proxy:
@@ -56,7 +76,7 @@ services:
       - buddy-network
     volumes:
       - postgres_data:/var/lib/postgresql/data
- 
+
   ollama-server:
     image: docker.io/ollama/ollama:0.12.3
     ports:
@@ -75,7 +95,7 @@ services:
       - OLLAMA_HOST=0.0.0.0
     networks:
       - buddy-network
-  
+
   qdrant:
     image: qdrant/qdrant:latest
     container_name: qdrant

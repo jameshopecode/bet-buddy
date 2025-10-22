@@ -14,9 +14,9 @@ public class KernelBuilder
         var client = new HttpClient();
         client.BaseAddress = new Uri("http://ollama-server:11434");
         client.Timeout = TimeSpan.FromMinutes(3);
-        builder.AddOllamaChatCompletion("gpt-oss:20b-cloud",client);
+        builder.AddOllamaChatCompletion("llama3.2:1b",client); // switch to gpt-oss:20b-cloud for faster, more accurate solution
         builder.AddOllamaEmbeddingGenerator("nomic-embed-text:v1.5",client);
-        
+
         builder.Services.AddQdrantVectorStore(
             host: "qdrant",
             port: 6334,
@@ -30,6 +30,6 @@ public class KernelBuilder
         //InitializeVectorStoreAsync(vectorStore, embeddingService).Wait();
         return kernel;
     }
-    
-    
+
+
 }
