@@ -1,6 +1,10 @@
 # Bet Buddy
 
+Personal player assistant in Betting and Gambling.
 
+Setup your own Bet Buddy multi-agentic system orchestrator to interact with players providing easiest-possible access to crucial functionalities.
+
+Rise conversion rate, ensure stable player engagement and strengthen your brand position on the market by integrating state-of-the-art tools of the future.
 
 ## How to run:
 Run:
