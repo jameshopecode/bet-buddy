@@ -1,0 +1,15 @@
+ARG NODE_VERSION=22.18.0
+FROM node:${NODE_VERSION}
+ARG UNAME=node
+ARG UID=1000
+ARG GID=1000
+RUN echo "Running for $UNAME:$UID:$GID"
+RUN groupadd -g $GID $UNAME || groupmod -g $GID $UNAME || echo "" >>/dev/null
+RUN useradd -m -u $UID -g $GID -s /bin/bash $UNAME || usermod -u $UID $UNAME
+RUN mkdir -p /.npm
+RUN mkdir -p /.config
+RUN mkdir -p /var/logs
+RUN mkdir -p /var/log
+RUN chown -R $UID:$GID /.npm
+RUN chown -R $UID:$GID /.config
+USER $UNAME
