@@ -22,7 +22,7 @@ services:
     working_dir: /home/node/web-app
     volumes:
       - ".:/home/node/web-app"
-    command: bash -c "pnpm i && pnpm dev"
+    command: bash -c "CI=1 pnpm i && pnpm dev"
     ports:
       - "4321:4321"
     networks:

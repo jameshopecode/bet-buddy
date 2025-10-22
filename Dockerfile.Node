@@ -12,4 +12,5 @@ RUN mkdir -p /var/logs
 RUN mkdir -p /var/log
 RUN chown -R $UID:$GID /.npm
 RUN chown -R $UID:$GID /.config
+RUN npm i -g pnpm
 USER $UNAME
