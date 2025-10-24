@@ -26,7 +26,7 @@ public class BetBuddyAgent : IBetBuddyAgent
             INSTRUCTIONS:
             1. When user ask about fixtures then use fixtures database to answer
             2. When user ask general question about gambling, betting, rules use your knowledge
-            3. Analyze matches to identity game if is sport or e-sport 
+            3. When using Fixtures tool, create `query` for SearchFixtures from user input to find matches/markets/teams/games and create `type` Sport/Esport/NA base on user input - NA if input is not related with endy type of game for example relate to market, teams etc.
             4. Only answer on question related to fixtures, betting and gambling
             IMPORTANT!:
             1. ""answer"" should be written in a short form and it needs to be clear summary 
@@ -93,12 +93,13 @@ public class BetBuddyAgent : IBetBuddyAgent
             FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
             NumPredict = 6000
         }) };
-        
+        var watch = System.Diagnostics.Stopwatch.StartNew();
         await foreach (var message in _chatCompletionAgent.InvokeAsync(prompt,chatHistory, options: options))
         {
             response += message.Message.Content;
         }
-
+        watch.Stop();
+        Console.WriteLine($"LLM Processing time = {watch.Elapsed.Seconds}");
         return response;
     }
 

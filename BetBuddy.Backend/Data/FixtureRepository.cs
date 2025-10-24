@@ -28,16 +28,19 @@ public class FixtureRepository
                 m.start_time::text as Date,
                 m.home as Home,
                 m.away as Away,
+                m.game as Game,
+                m.competition as Competition,
+                m.type as Type,
                 ARRAY_AGG(distinct mk.id) as Markets,
                 FORMAT(
-                    'Match: %s vs %s. Competition: %s. Data: %s. Home Team: %s. Away team: %s. Game type: %s. Available markets: %s',
-                    m.home,
-                    m.away,
-                    m.competition,
-                    m.start_time,
-                    m.home,
-                    m.away,
+                    '[SPORT: %s] [COMPETITION: %s] [TYPE: %s]: %s Match between %s vs %s on %s. Available betting markets include: %s',
                     m.game,
+                    m.competition,
+                    m.type,
+                    m.type,
+                    m.home,
+                    m.away,
+                    m.start_time,
                     STRING_AGG(distinct mk.name || ' (' || mk.market_type || ' ' || mk.id || ') ', ', ')
                 ) as Description
             FROM
