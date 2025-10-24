@@ -19,13 +19,46 @@ public class FixturesVectorStore
         qdrantClient = new QdrantClient("localhost");
     }
 
+    [KernelFunction("SearchFixturesByType")]
+    [Description("Search fixtures, matches, markets, markets, competitions for user type requirements")]
+    public async Task<FixtureResult[]> SearchFixturesAsyncByType([Description("examples: barcelona vs real, champions league, availiable markets include: handicap etc.")]string userQuery,[Description("Sport/Esport")] string typeRequirement)
+    {
+        var queryEmbedding = await _embeddingService.GenerateAsync(userQuery);
+        var qdrantClient = new QdrantClient("localhost");
+
+        var vectorResults  = await qdrantClient.SearchAsync(
+            collectionName: "fixtures",
+            vector: queryEmbedding.Vector,
+            limit: 20,
+            filter: MatchText("Type", typeRequirement),
+            scoreThreshold: 0.45f
+        );
+        
+        var vectorSearchResults = ConvertToSearchResults(vectorResults);
+
+        var results = vectorSearchResults
+            .Select(r => new FixtureResult()
+            {
+                Description =r.Record.Description,
+                Markets = r.Record.Markets,
+                MatchId = r.Record.MatchId
+            })
+            .Take(20)
+            .ToList();
+        
+        return results.ToArray();
+    }
+
     [KernelFunction("SearchFixtures")]
-    [Description("Search for all upcomming fixtures, matches with markets based on user requirements")]
+    [Description("Search fixtures, matches, markets, markets, competitions")]
     public async Task<FixtureResult[]> SearchFixturesAsync(
-        [Description("The search query describing what kind of fixtures, matchs or markets looking for")]
-        string query, 
-        [Description("The sport type can be Sport or Esport")]
-        string type)
+        [Description(@"The search query describing what kind of fixtures, matchs, team, competion or markets shoulb found semanticaly. For example:
+1. barcelona match in LaLiga
+2. Esport match beetwen Heroic vs Mouze
+3. availiable marketes incloude handicap
+4. [COMPETITION: CHAMPIONS LEAGUE]
+5. [TYPE: Esport]")]
+        string query)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
         await EnsureFullTextIndexExists();
@@ -33,29 +66,12 @@ public class FixturesVectorStore
         var queryEmbedding = await _embeddingService.GenerateAsync(query);
         var qdrantClient = new QdrantClient("localhost");
 
-        List<ScoredPoint> vectorResults = new List<ScoredPoint>();
-        if (!string.IsNullOrEmpty(type) && type != "NA")
-        {
-            var vectorResults3 = await qdrantClient.SearchAsync(
+        var vectorResults  = await qdrantClient.SearchAsync(
                 collectionName: "fixtures",
                 vector: queryEmbedding.Vector,
                 limit: 20,
-                scoreThreshold: 0.3f
+                scoreThreshold: 0.45f
             );
-            vectorResults.AddRange(vectorResults3);
-        }
-        else
-        {
-            var vectorResults2 = await qdrantClient.SearchAsync(
-                collectionName: "fixtures",
-                vector: queryEmbedding.Vector,
-                filter: MatchText("Type", type.ToLower()),
-                limit: 20,
-                scoreThreshold: 0.3f
-            );
-            
-            vectorResults.AddRange(vectorResults2);
-        }
 
         var exactResults = await qdrantClient.SearchAsync(
             collectionName: "fixtures",

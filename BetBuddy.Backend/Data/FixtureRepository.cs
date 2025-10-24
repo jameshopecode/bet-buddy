@@ -33,11 +33,9 @@ public class FixtureRepository
                 m.type as Type,
                 ARRAY_AGG(distinct mk.id) as Markets,
                 FORMAT(
-                    '[SPORT: %s] [COMPETITION: %s] [TYPE: %s]: %s Match between %s vs %s on %s. Available betting markets include: %s',
+                    '[GAME: %s] [COMPETITION: %s] Match between %s vs %s on %s. Available betting markets include: %s',
                     m.game,
                     m.competition,
-                    m.type,
-                    m.type,
                     m.home,
                     m.away,
                     m.start_time,
