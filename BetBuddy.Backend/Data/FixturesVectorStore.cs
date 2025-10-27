@@ -16,15 +16,16 @@ public class FixturesVectorStore
     public FixturesVectorStore(IEmbeddingGenerator<string, Embedding<float>> embeddingService)
     {
         _embeddingService = embeddingService;
-        qdrantClient = new QdrantClient("localhost");
+        qdrantClient = new QdrantClient("qdrant");
     }
 
     [KernelFunction("SearchFixturesByType")]
     [Description("Search fixtures, matches, markets, markets, competitions for user type requirements")]
     public async Task<FixtureResult[]> SearchFixturesAsyncByType([Description("examples: barcelona vs real, champions league, availiable markets include: handicap etc.")]string userQuery,[Description("Sport/Esport")] string typeRequirement)
     {
+        var watch = System.Diagnostics.Stopwatch.StartNew();
         var queryEmbedding = await _embeddingService.GenerateAsync(userQuery);
-        var qdrantClient = new QdrantClient("localhost");
+        var qdrantClient = new QdrantClient("qdrant");
 
         var vectorResults  = await qdrantClient.SearchAsync(
             collectionName: "fixtures",
@@ -45,7 +46,8 @@ public class FixturesVectorStore
             })
             .Take(20)
             .ToList();
-        
+        watch.Stop();
+        Console.WriteLine($"Hybrid search by type Processing time = {watch.Elapsed.Seconds}s");
         return results.ToArray();
     }
 
@@ -64,7 +66,7 @@ public class FixturesVectorStore
         await EnsureFullTextIndexExists();
         
         var queryEmbedding = await _embeddingService.GenerateAsync(query);
-        var qdrantClient = new QdrantClient("localhost");
+        var qdrantClient = new QdrantClient("qdrant");
 
         var vectorResults  = await qdrantClient.SearchAsync(
                 collectionName: "fixtures",
@@ -94,7 +96,7 @@ public class FixturesVectorStore
             .Take(20)
             .ToList();
         watch.Stop();
-        Console.WriteLine($"Hybrid search Processing time = {watch.Elapsed.Seconds}");
+        Console.WriteLine($"Hybrid search Processing time = {watch.Elapsed.Seconds}s");
         return results.ToArray();
     }
 
