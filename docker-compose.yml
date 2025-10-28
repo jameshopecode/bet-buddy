@@ -21,7 +21,7 @@ services:
     container_name: web-app
     working_dir: /home/node/web-app
     volumes:
-      - ".:/home/node/web-app"
+      - web_storage:/home/node/web-app
     command: bash -c "CI=1 pnpm i && pnpm dev"
     ports:
       - "4321:4321"
@@ -117,4 +117,6 @@ volumes:
   postgres_data:
     driver: local
   qdrant_storage:
+    driver: local
+  web_storage:
     driver: local
