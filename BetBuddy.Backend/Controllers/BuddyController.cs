@@ -52,14 +52,12 @@ public class BuddyController : ControllerBase
     
     public async Task InitializeVectorStoreAsync(IEnumerable<Fixture> fixtures)
     {
-        // Get the car collection
         var qdrantCollection = vectorStore.GetCollection<Guid, Fixture>("fixtures");;
             
-        // Ensure the collection exists
+   
         await qdrantCollection.EnsureCollectionExistsAsync();
         
-
-        // Generate embeddings and upsert cars
+        
         foreach (var fixture in fixtures)
         {
             var embedding = await embeddingService.GenerateAsync(fixture.Description);
